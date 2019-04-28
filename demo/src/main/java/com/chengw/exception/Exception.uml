@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.lang.RuntimeException</OriginalElement>
+  <nodes>
+    <node x="123.0" y="79.0">java.lang.Throwable</node>
+    <node x="211.0" y="158.0">java.lang.Error</node>
+    <node x="20.0" y="237.0">java.lang.RuntimeException</node>
+    <node x="0.0" y="316.0">java.lang.NullPointerException</node>
+    <node x="55.0" y="158.0">java.lang.Exception</node>
+    <node x="108.00000000000003" y="0.0">java.io.Serializable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.lang.Throwable" target="java.io.Serializable">
+      <point x="2.8421709430404007E-14" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="java.lang.Error" target="java.lang.Throwable">
+      <point x="0.0" y="-14.5" />
+      <point x="259.0" y="133.0" />
+      <point x="225.0" y="133.0" />
+      <point x="34.0" y="14.5" />
+    </edge>
+    <edge source="java.lang.RuntimeException" target="java.lang.Exception">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="java.lang.NullPointerException" target="java.lang.RuntimeException">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="java.lang.Exception" target="java.lang.Throwable">
+      <point x="1.4210854715202004E-14" y="-14.5" />
+      <point x="123.00000000000001" y="133.0" />
+      <point x="157.0" y="133.0" />
+      <point x="-34.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="153.5" y="172.5" />
+  <SelectedNodes>
+    <node>java.lang.RuntimeException</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
