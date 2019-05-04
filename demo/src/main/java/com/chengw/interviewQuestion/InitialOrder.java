@@ -1,6 +1,5 @@
 package com.chengw.interviewQuestion;
 
-import org.junit.jupiter.api.Test;
 
 /**
  * 初始化顺序
@@ -33,7 +32,7 @@ public class InitialOrder {
 
 class parents{
 
-    @Test
+
     public void Test(){
         InitialOrder I = new InitialOrder();
     }

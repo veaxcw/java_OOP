@@ -1,15 +1,9 @@
 package com.chengw.algorithm;
 
-
-import org.junit.jupiter.api.Test;
-
-
-
 public class PICaculate {
 
     static String num = "100000000000000000000";
     public static final long CIRCLE = 1000;
-    @Test
     public void mathPI(){
         double sum = 0;
         for(long i = 1; i < CIRCLE; i++){
