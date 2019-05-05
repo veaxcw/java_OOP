@@ -2,13 +2,11 @@ package com.chengw.designPattern.proxyPattern;
 
 import com.chengw.designPattern.proxyPattern.dao.ProxyDao;
 import com.chengw.designPattern.proxyPattern.dao.support.ProxyDaoImpl;
-import org.junit.Test;
 
 public class ProxyTest {
 
     private JDKProxyFactory jdkProxyFactory = new JDKProxyFactory();
 
-    @Test
     public  void test() {
         ProxyDaoImpl target = new ProxyDaoImpl();
         jdkProxyFactory.setTarget(target);
