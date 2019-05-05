@@ -1,13 +1,14 @@
 package com.chengw.dataStructure;
 
 import com.chengw.dataStructure.binaryTree.BinarySearchTree;
+import org.junit.Test;
 
 
 import java.util.Random;
 
 public class DataStructureTest {
 
-
+    @Test
     public void binarySearchTreeTest(){
         BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
         Random r = new Random();
@@ -20,4 +21,6 @@ public class DataStructureTest {
         binarySearchTree.preOrder();
         binarySearchTree.removeAll();
     }
+
+
 }

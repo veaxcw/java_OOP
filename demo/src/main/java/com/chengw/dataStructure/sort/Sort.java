@@ -2,6 +2,9 @@ package com.chengw.dataStructure.sort;
 
 
 
+
+import org.junit.Test;
+
 import java.util.Random;
 
 public class Sort{
@@ -23,7 +26,7 @@ public class Sort{
         }
     }
 
-
+    @Test
     public void bumbleSort(){//冒泡排序
         init();
         long start = System.currentTimeMillis();
@@ -40,7 +43,7 @@ public class Sort{
 
     }
 
-
+    @Test
     public void selectSort(){//选择排序
         init();
         long start = System.currentTimeMillis();
@@ -57,7 +60,7 @@ public class Sort{
 
     }
 
-
+    @Test
     public void insertSort(){//直接插入排序
         init();
         long start = System.currentTimeMillis();
@@ -77,7 +80,7 @@ public class Sort{
         output();
     }
 
-
+    @Test
     public void ShellSort(){//希尔排序
         init();
         long start = System.currentTimeMillis();
@@ -102,7 +105,7 @@ public class Sort{
 
 
 
-
+    @Test
     public void QuickSort(){//todo
         init();
         long start = System.currentTimeMillis();
