@@ -1,4 +1,4 @@
-package com.chengw.ioStream;
+package com.chengw.ioStream.oldCode;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +11,7 @@ public class CharStream {
 		File fr1 = null;
 		FileWriter fw = null;
 		Scanner sc = new Scanner(System.in);
-		try {//�ַ�������
+		try {
 			fr = new FileReader("F:/Test.txt");
 			int temp;
 			while((temp = fr.read()) != -1) {
@@ -26,7 +26,7 @@ public class CharStream {
 				e.printStackTrace();
 			}
 		}
-		//�ַ������
+
 		fr1 = new File("F:/","text.txt");
 		try {
 			if(fr1.exists()) {
@@ -35,7 +35,7 @@ public class CharStream {
 			fr1.createNewFile();
 		}catch(IOException e) {
 			e.printStackTrace();
-		}//�½�һ���ļ�
+		}
 		try {
 			fw = new FileWriter("F:/text.txt");
 			for(int i =0 ;i < 4; i++) {

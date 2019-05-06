@@ -1,4 +1,4 @@
-package com.chengw.ioStream;
+package com.chengw.ioStream.oldCode;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -15,12 +15,10 @@ public class Test_FileStream implements FilenameFilter {
 		File f = new File(path);
 		String filelist[] = f.list(new Test_FileStream());
 		for(int i = 0; i < filelist.length; i++) {
-			//����Ŀ¼
 			System.out.print(filelist[i]+ "\t\t");
 			System.out.println(new File("F:/",filelist[i]).isFile()?"�ļ�":"�ļ���" );
 		}
-		
-		//��ɴ�f3 ��f2 �ĸ���
+
 		File f2 = new File(path,filename);
 		File f3 = new File(path_java,filename_java);
 		FileInputStream fis = null ;
@@ -38,10 +36,10 @@ public class Test_FileStream implements FilenameFilter {
 		}
 		try {
 			fis = new FileInputStream(f2);
-			fos = new FileOutputStream(f2);//��ȡf2�ļ��ľ���·����������д������
+			fos = new FileOutputStream(f2);
 			fis_java = new FileInputStream(f3);
-			int temp = fis_java.read();//���ļ��ж�ȡһ���ֽ�
-			while(temp != -1) {//����˴�f3 ��f2 �ĸ���
+			int temp = fis_java.read();
+			while(temp != -1) {
 				fos.write(temp);
 				temp = fis_java.read();
 			}
@@ -49,7 +47,7 @@ public class Test_FileStream implements FilenameFilter {
 			fos.close();
 			fis_java.close();
 			System.out.println(f2.getName() + "(" + f2.length() + ")" + "��ɸ���");
-			//Desktop.getDesktop().open(new File("F:/Test.txt"));//���ļ�
+
 		}catch(IOException e) {
 			e.printStackTrace();
 		}

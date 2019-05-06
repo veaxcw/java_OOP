@@ -1,12 +1,12 @@
-package com.chengw.ioStream;
+package com.chengw.ioStream.oldCode;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Filetree {
-	Test_allFile file = new Test_allFile();//Ϊ�˵���fox_txt
+	Test_allFile file = new Test_allFile();
 	@SuppressWarnings("static-access")
-	public Filetree(File f) {//ͨ���ݹ�ʵ�ֱ����ļ�Ŀ¼�����е���Ŀ¼���ļ�
+	public Filetree(File f) {
 		String[] list = f.list();
 		String path = f.getAbsolutePath();
 		String temp = null;
@@ -22,14 +22,14 @@ public class Filetree {
 					 String txt = list[i] + "\t\t";
 					 try {
 					 file.fos_txt.writeBytes(txt);;;
-					 file.fos_txt.seek(file.fos_txt.length());//�ƶ�ָ�뵽�ļ�ĩβ
+					 file.fos_txt.seek(file.fos_txt.length());
 					 new Filetree(check);
 					 }catch(FileNotFoundException e) {
 						 e.printStackTrace();
 					 }					 
 				 }
 				 else if(check.isFile()) {
-					 int begin = list[i].lastIndexOf(".");//���ļ�����ǰ�� ������ļ���ʽ
+					 int begin = list[i].lastIndexOf(".");
 					 String text = "\t" + list[i] + "\t" + list[i].substring(begin+1);
 					 System.out.println("\t" + list[i] + "\t" + list[i].substring(begin+1));
 					 try {

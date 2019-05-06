@@ -1,6 +1,7 @@
 package com.chengw.algorithm.sumOfTwoNumbers;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -15,44 +16,25 @@ import java.util.HashMap;
  * 因为 nums[0] + nums[1] = 2 + 7 = 9
  * 所以返回 [0, 1]
  * **/
+
+/**解决思路：
+ * 暴力方法
+ * 遍历哈希表
+ * 利用key value对来完成
+ * **/
 public class Solution {
 
     public int[] twoSum(int[] nums,int target){
 
-        HashMap<Integer,Integer> ints = new HashMap<>();
-        for(int i = 0;i < nums.length; i++)
-            ints.put(nums[i],i);
+        Map<Integer,Integer> integers = new HashMap<>();
 
-        /**先排个序**/
         for(int i = 0;i < nums.length;i++){
-            for(int j = 0;j < nums.length - i - 1;j++){
-                if(nums[j] > nums[j+1]){
-                    int temp = nums[j];
-                    nums[j] = nums[j+1];
-                    nums[j+1] = temp;
-                }
-            }
+            if(integers.containsKey(target - nums[i]))
+                return new int[]{integers.get(target-nums[i]),i};
+            integers.put(nums[i],i);
         }
 
-        for(int i = 0; i < nums.length;i++){
-            if(nums[i] > target)
-                continue;
-            else {
-                int sub = target - nums[i];
-                if(sub < target/2){
-                    for(int j = 0;j < i;j++){
-                        if(sub == nums[j])
-                            return new int[]{ints.get(nums[i]),ints.get(nums[j])};
-                    }
-                }else {
-                    for(int j = i; j < nums.length; j++){
-                        if(sub == nums[j])
-                            return new int[]{ints.get(nums[i]),ints.get(nums[j])};
-                    }
-                }
-            }
-        }
-
+       //todo
 
         return null;
     }
