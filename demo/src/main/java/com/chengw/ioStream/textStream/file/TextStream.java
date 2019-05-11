@@ -1,10 +1,10 @@
-package com.chengw.ioStream.oldCode;
+package com.chengw.ioStream.textStream.file;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 import java.util.Scanner;
-public class CharStream {
+public class TextStream {
 
 	public static void main(String[] args) {
 		FileReader fr = null;
@@ -12,10 +12,10 @@ public class CharStream {
 		FileWriter fw = null;
 		Scanner sc = new Scanner(System.in);
 		try {
-			fr = new FileReader("F:/Test.txt");
+			fr = new FileReader("F:/employee.dat");
 			int temp;
 			while((temp = fr.read()) != -1) {
-				System.out.print((char)temp);
+				System.out.println(Integer.toHexString(temp));
 			}
 		}catch(IOException e) {
 			e.printStackTrace();

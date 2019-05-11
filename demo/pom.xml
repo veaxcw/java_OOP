@@ -37,6 +37,11 @@
             <artifactId>spring-beans</artifactId>
             <version>5.1.6.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+        </dependency>
     </dependencies>
     <modelVersion>4.0.0</modelVersion>
 
