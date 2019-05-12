@@ -43,44 +43,44 @@ public class Solution {
         /***
          * 该二维数组存储每个字符是否匹配的情况
          * */
-        boolean[][] memo = new boolean[2][pLen + 1];
+        boolean[] memo = new boolean[sLen + 1];
 
-        memo[0][0] = true;
+        memo[0] = true;
 
-        int cur = 0;
-        int pre = 0;
+        boolean star ;
 
-        for(int i =0; i <= sLen; i++){
 
-            cur = i % 2 ;
-            pre = (i + 1) % 2;
-
-            if(i > 1){
-                //初始化
-                for(int j = 0; j < pLen;j ++)
-
-                     memo[cur][j] = false;
+        for(int i = 1, j = 1; i <= sLen && j <= pLen; i++){
+            star = j <= pLen && p.charAt(j - 1) == '*';
+            if(!star) j++;
+            if(star){
+               int index = p.lastIndexOf("*");
+                memo[i] = memo[i -1] && ( isContain(p.substring(0,index),s.charAt(i - 1)) || p.charAt(i - 2 ) == '.');
+            }else {
+                memo[i] = i < pLen && memo[i - 1] && (s.charAt(i - 1) == p.charAt(i - 1) || p.charAt(i -1 ) == '.');
             }
-            //没看懂
-            for(int j = 1; j < pLen; j++){
-                if(p.charAt(j -1) == '*'){
-                    memo[cur][j] = memo[cur][j - 2] || (
-                            i > 0 &&(s.charAt(i-1) == p.charAt(j -2) ||
-                            p.charAt( j -2) == '.')&& memo[pre][j]);
-                }else {
-                    memo[cur][j] = i > 0 && (s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '.')
-                            && memo[pre][j-1];
-                }
-            }
-
-
         }
-        return  memo[cur][pLen];
+
+
+        return  memo[sLen];
 
     }
 
+    private static boolean isContain(String s,char c){
+
+        Boolean[] flag = new Boolean[s.length() + 1];
+
+        flag[0] = false;
+
+        for(int i = 1;i <= s.length();i++){
+            flag[i]  = flag[i - 1] || s.charAt(i - 1) == c;
+        }
+
+        return flag[s.length()];
+    }
+
     public static void main(String[] args) {
-        isMatch("zo","zo*");
+        System.out.println( isMatch("aa","a"));
     }
 
 }
