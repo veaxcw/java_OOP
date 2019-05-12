@@ -34,4 +34,53 @@ package com.chengw.algorithm.regex;
  * 解释: ".*" 表示可匹配零个或多个('*')任意字符('.')。
  * **/
 public class Solution {
+
+    public static boolean isMatch(String s, String p) {
+
+        int sLen = s.length();
+        int pLen = p.length();
+
+        /***
+         * 该二维数组存储每个字符是否匹配的情况
+         * */
+        boolean[][] memo = new boolean[2][pLen + 1];
+
+        memo[0][0] = true;
+
+        int cur = 0;
+        int pre = 0;
+
+        for(int i =0; i <= sLen; i++){
+
+            cur = i % 2 ;
+            pre = (i + 1) % 2;
+
+            if(i > 1){
+                //初始化
+                for(int j = 0; j < pLen;j ++)
+
+                     memo[cur][j] = false;
+            }
+            //没看懂
+            for(int j = 1; j < pLen; j++){
+                if(p.charAt(j -1) == '*'){
+                    memo[cur][j] = memo[cur][j - 2] || (
+                            i > 0 &&(s.charAt(i-1) == p.charAt(j -2) ||
+                            p.charAt( j -2) == '.')&& memo[pre][j]);
+                }else {
+                    memo[cur][j] = i > 0 && (s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '.')
+                            && memo[pre][j-1];
+                }
+            }
+
+
+        }
+        return  memo[cur][pLen];
+
+    }
+
+    public static void main(String[] args) {
+        isMatch("zo","zo*");
+    }
+
 }

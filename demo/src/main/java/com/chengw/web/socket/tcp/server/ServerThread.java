@@ -1,13 +1,18 @@
-package com.chengw.InternetProgramming;
+package com.chengw.web.socket.tcp.server;
 
 import java.io.*;
 import java.net.Socket;
+/**
+ * 接收客户端发送过来的信息
+ * */
+public class ServerThread implements  Runnable {
 
-public class ServerIn  {
-    Socket socket = null;
-    public ServerIn(Socket socket){
-        this.socket = socket;
+    private Socket client;
+
+    public ServerThread(Socket socket){
+        this.client = socket;
     }
+
     public void run(){
         InputStream ips = null;
         InputStreamReader ipsr = null;
@@ -15,18 +20,18 @@ public class ServerIn  {
         OutputStream os = null;
         PrintWriter pw = null;
         try {
-            ips = socket.getInputStream();//��ȡ�������ͻ��˵���Ϣ
-            ipsr = new InputStreamReader(ips);//���ֽ���������װ���ַ�������
-            br = new BufferedReader(ipsr);//��ipsrд��������
+            ips = client.getInputStream();
+            ipsr = new InputStreamReader(ips);
+            br = new BufferedReader(ipsr);
             String info = null;
             while ((info = br.readLine()) != null){
                 System.out.println("Client said : " + info);
             }
-            socket.shutdownInput();
-            os = socket.getOutputStream();//��ȡ�����
+            client.shutdownInput();
+            os = client.getOutputStream();
             pw = new PrintWriter(os);
             pw.write("welcome");
-            pw.flush();//ˢ�»�����
+            pw.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }finally{
@@ -41,8 +46,8 @@ public class ServerIn  {
                     os.close();
                 if(pw != null)
                     pw.close();
-                if(socket != null)
-                    socket.close();
+                if(client != null)
+                    client.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

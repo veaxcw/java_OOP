@@ -2,37 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="294c958e-0b58-401e-b2e0-73ed969c4bde" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/dynamicProgramming/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/regex/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/byteStream/file/FileStream.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/byteStream/object/pojo/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/byteStream/object/pojo/Manager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/byteStream/object/serialization/ObjectStream.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/nio/file/NIOFileOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/regex/Regex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/unnamed.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_websocket_javax_websocket_api_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/server_client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/websocket/MyWebSocket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/target/classes/com/chengw/web/websocket/MyWebSocket.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demo.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/atoi/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/atoi/Solution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/oldCode/CharStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/textStream/file/TextStream.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/oldCode/Filetree.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/byteStream/file/FileTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/oldCode/Test_FileStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/oldCode/Test_SystemStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/oldCode/Test_allFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/InternetProgramming/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/chengw/InternetProgramming/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/InternetProgramming/ServerIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/chengw/InternetProgramming/ServerIn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/ioStream/oldCode/CharStream.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/ioStream/oldCode/Filetree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/ioStream/oldCode/Test_FileStream.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/ioStream/oldCode/Test_SystemStream.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/ioStream/oldCode/Test_allFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/jdbc/MySQLUse.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/chengw/jdbc/MySQLUse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/reflection/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/chengw/reflection/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/InternetProgramming/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/InternetProgramming/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/client/ClientThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/InternetProgramming/GetInetAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/GetInetAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/InternetProgramming/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/InternetProgramming/ServerIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/server/ServerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/InternetProgramming/ServerThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/InternetProgramming/server_client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/regex/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/regex/Solution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/InternetProgramming/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/InternetProgramming/ClientThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/InternetProgramming/GetInetAddress.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/chengw/web/socket/GetInetAddress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/InternetProgramming/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/InternetProgramming/ServerThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/InternetProgramming/server_client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/algorithm/atoi/Solution.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/chengw/algorithm/atoi/Solution.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/algorithm/regex/Solution.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/chengw/algorithm/regex/Solution.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/chengw/web/socket/ServerIn.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/java.xmind" beforeDir="false" afterPath="$PROJECT_DIR$/java.xmind" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/深入理解计算机系统.xmind" beforeDir="false" afterPath="$PROJECT_DIR$/深入理解计算机系统.xmind" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/demo/target/" />
@@ -49,10 +44,36 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/regex/Regex.java">
+        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/client/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="41" column="35" lean-forward="true" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
+              <folding>
+                <element signature="e#117#118#0" expanded="true" />
+                <element signature="e#139#140#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/client/ClientThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+              <folding>
+                <element signature="e#116#117#0" expanded="true" />
+                <element signature="e#144#145#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
-              <caret line="13" column="54" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
+              <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -61,37 +82,75 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/regex/Solution.java">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/net/ServerSocket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+            <state relative-caret-position="-507">
+              <caret line="179" column="11" selection-start-line="179" selection-start-column="11" selection-end-line="179" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/dynamicProgramming/Solution.java">
+        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/server_client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="53" column="27" lean-forward="true" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+            <state relative-caret-position="323">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/collection/linklist/Linklist.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/jdbc/MySQLUse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="30" column="38" lean-forward="true" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/atoi/Solution.java">
+        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/regex/Solution.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="454">
+              <caret line="67" column="71" lean-forward="true" selection-start-line="67" selection-start-column="71" selection-end-line="67" selection-end-column="71" />
+              <folding>
+                <element signature="e#1721#1722#0" expanded="true" />
+                <element signature="e#1745#1746#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/util/regex/Pattern.java">
+        <entry file="file://$PROJECT_DIR$/demo/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7948">
-              <caret line="888" column="50" selection-start-line="888" selection-start-column="50" selection-end-line="888" selection-end-column="50" />
+            <state relative-caret-position="228">
+              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/server/ServerThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="e#172#173#0" expanded="true" />
+                <element signature="e#208#209#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,9 +167,11 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>@Test</find>
+      <find>socket</find>
     </findStrings>
     <replaceStrings>
       <replace />
+      <replace>client</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -120,7 +181,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/demo/pom.xml" />
         <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/dataStructure/sort/Sort.java" />
         <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/interviewQuestion/InitialOrder.java" />
         <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/dataStructure/sort/TestSort.java" />
@@ -142,11 +202,32 @@
         <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/byteStream/file/FileTree.java" />
         <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/nio/file/NIOFileOperation.java" />
         <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/ioStream/regex/Regex.java" />
-        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/regex/Solution.java" />
         <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/dynamicProgramming/Solution.java" />
         <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/atoi/Solution.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/Client.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/ServerIn.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/Server.java" />
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/websocket/EchoServlet.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/websocket/MyWebSocket.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/GetInetAddress.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/client/Client.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/server/ServerIn.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/server/ServerThread.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/client/ClientThread.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/server/Server.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/server_client.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/server_client.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/regex/Solution.java" />
       </list>
     </option>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -238,7 +319,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="chengw" type="462c0819:PsiDirectoryNode" />
               <item name="algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="atoi" type="462c0819:PsiDirectoryNode" />
+              <item name="regex" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="java" type="b2602c69:ProjectViewProjectNode" />
@@ -247,7 +328,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="chengw" type="462c0819:PsiDirectoryNode" />
-              <item name="ioStream" type="462c0819:PsiDirectoryNode" />
+              <item name="dataStructure" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="java" type="b2602c69:ProjectViewProjectNode" />
@@ -256,7 +337,17 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="chengw" type="462c0819:PsiDirectoryNode" />
-              <item name="jvm" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="chengw" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="socket" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="java" type="b2602c69:ProjectViewProjectNode" />
@@ -266,11 +357,6 @@
             <path>
               <item name="java" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
             </path>
           </expand>
           <select />
@@ -288,7 +374,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="Errors" />
@@ -305,7 +391,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Solution">
+  <component name="RunManager" selected="Application.Solution (1)">
     <configuration name="JavaMethodAreaOOM" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.chengw.jvm.oom.methodAreaOOM.JavaMethodAreaOOM" />
       <module name="demo" />
@@ -335,12 +421,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjectStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.chengw.ioStream.byteStream.object.serialization.ObjectStream" />
+    <configuration name="Regex" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.chengw.ioStream.regex.Regex" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.chengw.ioStream.byteStream.object.serialization.*" />
+          <option name="PATTERN" value="com.chengw.ioStream.regex.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -348,12 +434,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Regex" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.chengw.ioStream.regex.Regex" />
+    <configuration name="Solution (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.chengw.algorithm.regex.Solution" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.chengw.ioStream.regex.*" />
+          <option name="PATTERN" value="com.chengw.algorithm.regex.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -374,12 +460,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TextStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.chengw.ioStream.textStream.file.TextStream" />
+    <configuration name="server_client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.chengw.web.socket.tcp.server_client" />
       <module name="demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.chengw.ioStream.textStream.file.*" />
+          <option name="PATTERN" value="com.chengw.web.socket.tcp.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -387,22 +473,86 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="sockt" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.40" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment />
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_java" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="59326" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.JavaVMStackSOF" />
       <item itemvalue="Application.JavaMethodAreaOOM" />
-      <item itemvalue="Application.ObjectStream" />
-      <item itemvalue="Application.TextStream" />
       <item itemvalue="Application.NIOFileOperation" />
       <item itemvalue="Application.Regex" />
       <item itemvalue="Application.Solution" />
+      <item itemvalue="Application.server_client" />
+      <item itemvalue="Tomcat Server.sockt" />
+      <item itemvalue="Application.Solution (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Solution (1)" />
+        <item itemvalue="Application.server_client" />
         <item itemvalue="Application.Solution" />
         <item itemvalue="Application.Regex" />
         <item itemvalue="Application.NIOFileOperation" />
-        <item itemvalue="Application.TextStream" />
-        <item itemvalue="Application.ObjectStream" />
       </list>
     </recent_temporary>
   </component>
@@ -418,28 +568,37 @@
       <updated>1556976899417</updated>
       <workItem from="1556976900823" duration="4328000" />
       <workItem from="1557233303671" duration="1534000" />
-      <workItem from="1557275590410" duration="15921000" />
+      <workItem from="1557275590410" duration="29403000" />
     </task>
+    <task id="LOCAL-00001" summary="forget">
+      <created>1557550592978</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1557550592978</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21783000" />
+    <option name="totallyTimeSpent" value="35265000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.40138593" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20948827" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Application Servers" weight="0.32925472" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.329582" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27030033" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39933258" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.033370413" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.10789766" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.38042268" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -464,23 +623,33 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="forget" />
+    <option name="LAST_COMMIT_MESSAGE" value="forget" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/regex/Solution.java</url>
+          <line>39</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="s.charAt(i-1)" />
+        <watch expression="p.charAt(j-1)" />
+      </configuration>
+    </watches-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml" />
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/exception/TestThrow2.java" />
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/exception/TestThrow.java" />
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/exception/SuperCatch.java" />
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/collection/CollectionDemo.java" />
     <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/string/IpCheck.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -761,24 +930,175 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/regex/Solution.java">
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/atoi/Solution.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+        <state relative-caret-position="114">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/dynamicProgramming/Solution.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
-          <caret line="53" column="27" lean-forward="true" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/atoi/Solution.java">
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="38">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/javax/websocket/javax.websocket-api/1.1/javax.websocket-api-1.1.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2896" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/websocket/MyWebSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#814#827#0" expanded="true" />
+            <element signature="e#919#920#0" expanded="true" />
+            <element signature="e#986#987#0" expanded="true" />
+            <element signature="e#2618#2619#0" expanded="true" />
+            <element signature="e#2652#2653#0" expanded="true" />
+            <element signature="e#2708#2709#0" expanded="true" />
+            <element signature="e#2749#2750#0" expanded="true" />
+            <element signature="e#2805#2806#0" expanded="true" />
+            <element signature="e#2846#2847#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/GetInetAddress.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="695" column="29" selection-start-line="695" selection-start-column="29" selection-end-line="695" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/net/ServerSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-507">
+          <caret line="179" column="11" selection-start-line="179" selection-start-column="11" selection-end-line="179" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="41" column="35" lean-forward="true" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
+          <folding>
+            <element signature="e#117#118#0" expanded="true" />
+            <element signature="e#139#140#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/server/ServerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/server/ServerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#172#173#0" expanded="true" />
+            <element signature="e#208#209#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/client/ClientThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#116#117#0" expanded="true" />
+            <element signature="e#144#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/udp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/web/socket/tcp/server_client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/collection/linklist/Linklist.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/jdbc/MySQLUse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="30" column="38" lean-forward="true" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/chengw/algorithm/regex/Solution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="67" column="71" lean-forward="true" selection-start-line="67" selection-start-column="71" selection-end-line="67" selection-end-column="71" />
+          <folding>
+            <element signature="e#1721#1722#0" expanded="true" />
+            <element signature="e#1745#1746#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -788,10 +1108,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>unnamed</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -840,6 +1162,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

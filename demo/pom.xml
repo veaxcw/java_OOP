@@ -11,6 +11,14 @@
         java基础demo，包含基础类，多线程基础，数据结构基础，反射，异常等常用基础
     </description>
     <dependencies>
+
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <version>1.1</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>

@@ -1,10 +1,12 @@
-package com.chengw.InternetProgramming;
+package com.chengw.web.socket;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 
-public class GetInetAddress {//InetAddress������Ӧ��
+public class GetInetAddress {
+
+
     public GetInetAddress() {
         try {
             InetAddress address = InetAddress.getLocalHost();

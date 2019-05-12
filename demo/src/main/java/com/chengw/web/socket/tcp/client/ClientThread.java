@@ -1,8 +1,8 @@
-package com.chengw.InternetProgramming;
+package com.chengw.web.socket.tcp.client;
 
 public class ClientThread implements Runnable {
     @Override
     public void run() {
-        new Client();
+        new com.chengw.web.client.client.Client();
     }
 }
