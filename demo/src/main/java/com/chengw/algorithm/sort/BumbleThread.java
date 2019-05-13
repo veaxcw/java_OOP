@@ -1,4 +1,4 @@
-package com.chengw.dataStructure.sort;
+package com.chengw.algorithm.sort;
 
 public class BumbleThread implements Runnable {
     @Override
