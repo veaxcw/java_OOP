@@ -1,4 +1,4 @@
-package com.chengw.thread.skill.instaniateVariableAndThreadSecurity;
+package com.chengw.thread.skill.myrunnable;
 
 public class MyThread extends Thread {
 
