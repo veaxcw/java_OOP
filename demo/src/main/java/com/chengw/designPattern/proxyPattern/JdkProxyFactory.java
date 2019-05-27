@@ -4,17 +4,18 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-public class JDKProxyFactory {
-
-
+/**
+ * @author chengw
+ */
+public class JdkProxyFactory {
 
     private Object target;
 
-    public JDKProxyFactory(Object target) {
+    public JdkProxyFactory(Object target) {
         this.target = target;
     }
 
-    public JDKProxyFactory() {
+    public JdkProxyFactory() {
     }
 
     public Object getProxyInstance(){
