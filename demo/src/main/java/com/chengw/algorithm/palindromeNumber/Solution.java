@@ -20,14 +20,16 @@ import java.util.List;
  * 输入: 10
  * 输出: false
  * 解释: 从右向左读, 为 01 。因此它不是一个回文数。
- * **/
+ *
+ * @author chengw**/
 public class Solution {
     public static boolean isPalindrome(int x) {
 
         boolean flag = false;
 
-        if(x < 0 )
+        if(x < 0 ) {
             return false;
+        }
         List<Integer> list = new ArrayList<>();
 
         int temp = x;
@@ -39,13 +41,14 @@ public class Solution {
         int i = 0;
         int j = list.size() - 1;
         while(i <= j){
-            if(list.get(i) == list.get(j)){
+            if(list.get(i).equals(list.get(j))){
                 i++;
                 j--;
                 flag = true;
             }
-            else
+            else {
                 return false;
+            }
         }
         return x < 0?false:(x == 0?true:flag);
     }

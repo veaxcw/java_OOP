@@ -88,7 +88,7 @@ public class BinarySearchTree<T extends Comparable<? super T>> extends BinaryTre
     }
 
 
-    /**递归实现是否包含制定对象**/
+    /**递归实现是否包含指定对象**/
     private boolean contain(Node<T> parent,Comparable data){
 
         if(parent == null)
