@@ -1,0 +1,13 @@
+package com.chengw.algorithm.binaryTree.common;
+
+public class TreeNode implements Comparable<TreeNode> {
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
+    public TreeNode(int x) { val = x; }
+
+    @Override
+    public int compareTo(TreeNode o) {
+        return 0;
+    }
+}

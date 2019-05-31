@@ -21,7 +21,8 @@ import java.util.Map;
  * 暴力方法
  * 遍历哈希表
  * 利用key value对来完成
- * **/
+ *
+ * @author chengw**/
 public class Solution {
 
     public int[] twoSum(int[] nums,int target){
@@ -29,8 +30,9 @@ public class Solution {
         Map<Integer,Integer> integers = new HashMap<>();
 
         for(int i = 0;i < nums.length;i++){
-            if(integers.containsKey(target - nums[i]))
+            if(integers.containsKey(target - nums[i])) {
                 return new int[]{integers.get(target-nums[i]),i};
+            }
             integers.put(nums[i],i);
         }
 
