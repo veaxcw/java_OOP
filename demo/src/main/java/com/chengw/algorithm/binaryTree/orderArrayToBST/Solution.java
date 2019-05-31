@@ -1,9 +1,7 @@
 package com.chengw.algorithm.binaryTree.orderArrayToBST;
 
 import com.chengw.algorithm.binaryTree.common.TreeNode;
-import com.chengw.array.Array;
 
-import java.util.Arrays;
 
 /**
  * @author chengw
