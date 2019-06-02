@@ -1,6 +1,6 @@
 package com.chengw.thread.challenge.visiablility;
 
-import com.chengw.thread.tools.Tools;
+import com.chengw.thread.utils.Tools;
 
 /**
  * 线程终止之后该线程对共享变量的更改对于调用该线程的join方法的线程而言 是可见的

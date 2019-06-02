@@ -1,6 +1,6 @@
 package com.chengw.thread.challenge.raceCondition;
 
-import com.chengw.thread.tools.Tools;
+import com.chengw.thread.utils.Tools;
 
 /**
  * 竟态DEMO

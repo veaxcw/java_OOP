@@ -1,6 +1,6 @@
 package com.chengw.thread.challenge.visiablility;
 
-import com.chengw.thread.tools.Tools;
+import com.chengw.thread.utils.Tools;
 
 /**
  * 线程启动与可见性
