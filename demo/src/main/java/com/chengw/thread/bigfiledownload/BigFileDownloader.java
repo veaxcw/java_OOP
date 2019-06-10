@@ -38,7 +38,7 @@ public class BigFileDownloader {
      * @param reportInterval
      *            下载进度报告周期
      */
-    public void download(int taskCount,long reportInterval){
+    public void download(int taskCount,long reportInterval) throws InterruptedException {
 
         long chunkSizePerThread = fileSize/taskCount;
 
@@ -55,6 +55,8 @@ public class BigFileDownloader {
 
             downloadTask = new DownloadTask(lowerBound,upperBound,requestURL,storage,taskCanceld);
             dispatchWork(downloadTask,i);
+            reportProgress(reportInterval);
+            doCleanUp();
         }
 
     }
@@ -119,7 +121,9 @@ public class BigFileDownloader {
 
     }
 
-    // 报告下载进度
+    /**
+     *  报告下载进度
+     *  **/
     private void reportProgress(long reportInterval) throws InterruptedException {
         float lastCompletion;
         int completion = 0;
