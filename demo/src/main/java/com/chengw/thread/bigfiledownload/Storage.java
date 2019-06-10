@@ -21,7 +21,7 @@ public class Storage implements Closeable,AutoCloseable {
 
 
     public Storage(long fileSize, String fileShortName) throws IOException {
-        String fullFileName = System.getProperty("java.io.tmpdir") + fileShortName;
+        String fullFileName = "F:/download/" + fileShortName;
         String localFileName = creatStoreFile(fileSize, fullFileName);
 
         storeFile = new RandomAccessFile(localFileName,"rw");

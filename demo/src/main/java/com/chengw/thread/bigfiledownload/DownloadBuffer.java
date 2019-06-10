@@ -48,7 +48,7 @@ public class DownloadBuffer implements Closeable {
 
     @Override
     public void close() throws IOException {
-        Debug.info("globalOffset:%s,upperBound:%s", globalOffSet, upperBound);
+        Debug.info("globalOffset"+globalOffSet + "upperBound:" + upperBound);
         if (globalOffSet < upperBound) {
             flush();
         }
