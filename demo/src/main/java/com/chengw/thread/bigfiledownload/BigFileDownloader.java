@@ -19,7 +19,7 @@ public class BigFileDownloader {
 
     protected final Storage storage;
 
-    protected final AtomicBoolean taskCanceld = new AtomicBoolean(false);
+    protected final AtomicBoolean taskCancel = new AtomicBoolean(false);
 
 
 
@@ -27,7 +27,7 @@ public class BigFileDownloader {
 
         this.requestURL = new URL(strUrl);
         fileSize = receiveFileSize(requestURL);
-        Debug.info("file total size:%s" + fileSize);
+        Debug.info("file total size:" + fileSize/(1024*1024) +"M");
         String fileName = strUrl.substring(strUrl.lastIndexOf("/")+1);
         storage = new Storage(fileSize,fileName);
     }
@@ -53,7 +53,7 @@ public class BigFileDownloader {
                 upperBound = lowerBound + chunkSizePerThread - 1;
             }
 
-            downloadTask = new DownloadTask(lowerBound,upperBound,requestURL,storage,taskCanceld);
+            downloadTask = new DownloadTask(lowerBound,upperBound,requestURL,storage, taskCancel);
             dispatchWork(downloadTask,i);
             reportProgress(reportInterval);
             doCleanUp();
@@ -80,7 +80,7 @@ public class BigFileDownloader {
     }
 
     private void cancelDownLoad(){
-        if(taskCanceld.compareAndSet(false,true)){
+        if(taskCancel.compareAndSet(false,true)){
             doCleanUp();
         }
     }
@@ -127,20 +127,20 @@ public class BigFileDownloader {
     private void reportProgress(long reportInterval) throws InterruptedException {
         float lastCompletion;
         int completion = 0;
-        while (!taskCanceld.get()) {
+        while (!taskCancel.get()) {
             lastCompletion = completion;
             completion = (int) (storage.getTotalWrites().get() * 100 / fileSize);
             if (completion == 100) {
                 break;
             } else if (completion - lastCompletion >= 1) {
-                Debug.info("Completion:%s%%", completion);
+                Debug.info("Completion:" + completion + "%");
                 if (completion >= 90) {
                     reportInterval = 1000;
                 }
             }
             Thread.sleep(reportInterval);
         }
-        Debug.info("Completion:%s%%", completion);
+        Debug.info("Completion:" + completion + "%");
     }
 }
 

@@ -17,7 +17,8 @@ public class DownloadTest {
             args = new String[]{"http://localhost:8080/download/%E6%B5%8B%E8%AF%95.pdf","2","3"};
         }
         long start = System.currentTimeMillis();
-        download(args);
+        //download(args);
+        download(args,0);
         long end = System.currentTimeMillis();
         System.out.println("下载用时" + (end - start));
     }
@@ -73,6 +74,21 @@ public class DownloadTest {
 
 
 
+    }
+
+    public static void download(String[] args,int flag) throws Exception {
+        final int argc = args.length;
+
+        BigFileDownloader downloader = new BigFileDownloader(args[0]);
+
+        int workerThreadCount = argc >=2?Integer.valueOf(args[1]):2;
+
+        long reportInterval = argc >=3?Integer.valueOf(args[2]):2;
+
+        Debug.info("downloading %s%nConfig:worker threads:%s,reportInterval:%s s.",
+                args[0], workerThreadCount,reportInterval);
+
+        downloader.download(workerThreadCount,  reportInterval * 1000);
     }
 
 }

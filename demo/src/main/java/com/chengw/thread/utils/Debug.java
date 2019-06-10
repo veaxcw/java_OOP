@@ -53,9 +53,9 @@ public class Debug {
         SimpleDateFormat sdf = sdfWrapper.get();
         @SuppressWarnings("resource")
         final PrintStream ps = label == Label.INFO ? System.out : System.err;
-        ps.printf('[' + sdf.format(new Date()) + "][" + label.getName()
-                + "]["
-                + Thread.currentThread().getName() + "]:" + format + " %n", args);
+        String message = "[" + sdf.format(new Date()) + "][" + label.getName()
+                + "][" + Thread.currentThread().getName() + "]:" + format ;
+        ps.println(message);
     }
 
 

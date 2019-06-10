@@ -51,7 +51,7 @@ public class Storage implements Closeable,AutoCloseable {
      * **/
     private String creatStoreFile(final long fileSize,String fullFileName) throws IOException {
         File file = new File(fullFileName);
-        Debug.info("create local file:%s",fullFileName);
+        Debug.info("create local file:"+fullFileName,fullFileName);
         RandomAccessFile randomAccessFile = new RandomAccessFile(file,"rw");
         try {
             randomAccessFile.setLength(fileSize);
@@ -67,6 +67,8 @@ public class Storage implements Closeable,AutoCloseable {
 
     @Override
     public void close() throws IOException {
-
+        if(storeChannel.isOpen()){
+            Tools.silentClose(storeChannel,storeFile);
+        }
     }
 }
