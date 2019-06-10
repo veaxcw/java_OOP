@@ -28,6 +28,7 @@ public class DownloadBuffer implements Closeable {
         int length = buf.position();
         final int capacity = buf.capacity();
         if((offset + length) > capacity || length == capacity){
+            //将缓冲区写入文件
             flush();
         }
 
@@ -47,8 +48,8 @@ public class DownloadBuffer implements Closeable {
     }
 
     @Override
-    public void close() throws IOException {
-        Debug.info("globalOffset"+globalOffSet + "upperBound:" + upperBound);
+    public synchronized void close() throws IOException {
+        Debug.info("globalOffset:"+ globalOffSet + ";upperBound:" + upperBound);
         if (globalOffSet < upperBound) {
             flush();
         }

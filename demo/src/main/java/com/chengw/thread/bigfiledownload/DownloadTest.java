@@ -14,7 +14,7 @@ public class DownloadTest {
 
     public static void main(String[] args) throws Exception {
         if( 0 == args.length){
-            args = new String[]{"http://localhost:8080/download/%E6%B5%8B%E8%AF%95.pdf","2","3"};
+            args = new String[]{"http://localhost:8080/download/word.txt","2","3"};
         }
         long start = System.currentTimeMillis();
         //download(args);
@@ -85,8 +85,7 @@ public class DownloadTest {
 
         long reportInterval = argc >=3?Integer.valueOf(args[2]):2;
 
-        Debug.info("downloading %s%nConfig:worker threads:%s,reportInterval:%s s.",
-                args[0], workerThreadCount,reportInterval);
+        Debug.info("begin downloading " + "Config:worker threads:" + workerThreadCount +"reportInterval:" + reportInterval);
 
         downloader.download(workerThreadCount,  reportInterval * 1000);
     }

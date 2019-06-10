@@ -6,6 +6,7 @@ import com.chengw.thread.utils.Tools;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -25,10 +26,12 @@ public class BigFileDownloader {
 
     public BigFileDownloader(String strUrl) throws Exception {
 
+
         this.requestURL = new URL(strUrl);
         fileSize = receiveFileSize(requestURL);
         Debug.info("file total size:" + fileSize/(1024*1024) +"M");
-        String fileName = strUrl.substring(strUrl.lastIndexOf("/")+1);
+        String url = URLDecoder.decode(strUrl, "UTF-8");
+        String fileName = url.substring(url.lastIndexOf("/")+1);
         storage = new Storage(fileSize,fileName);
     }
 
@@ -55,7 +58,7 @@ public class BigFileDownloader {
 
             downloadTask = new DownloadTask(lowerBound,upperBound,requestURL,storage, taskCancel);
             dispatchWork(downloadTask,i);
-            reportProgress(reportInterval);
+            //reportProgress(reportInterval);
             doCleanUp();
         }
 
