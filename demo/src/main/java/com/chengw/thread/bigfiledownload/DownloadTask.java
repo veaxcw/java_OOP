@@ -6,8 +6,11 @@ import com.chengw.thread.utils.Tools;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -98,21 +101,19 @@ public class DownloadTask implements Runnable {
         ReadableByteChannel channel = null;
 
         try {
-            //channel = Channels.newChannel(issueRequest(requestURL,lowerBound,upperBound));
-            InputStream inputStream = issueRequest(requestURL, lowerBound, upperBound);
-            //ByteBuffer buffer = ByteBuffer.allocate(1024);
+            channel = Channels.newChannel(issueRequest(requestURL,lowerBound,upperBound));
+            ByteBuffer buffer = ByteBuffer.allocate(1024);
             byte[] buf = new byte[1024];
-            int len = 0;
-            while (!cancelFlag.get() && (len = inputStream.read(buf)) != -1){
-//                /**将从网络中读取的数据写入缓冲区**/
-//                downloadBuffer.write(buffer);
-//                buffer.clear();
-                  storage.store(lowerBound,buf);
+            while (!cancelFlag.get() && (channel.read(buffer) != -1)){
+                /**将从网络中读取的数据写入缓冲区**/
+                downloadBuffer.write(buffer);
+                buffer.clear();
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             Tools.silentClose(channel,downloadBuffer);
+
         }
 
     }

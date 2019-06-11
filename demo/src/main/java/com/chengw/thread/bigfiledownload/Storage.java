@@ -16,16 +16,17 @@ import java.util.concurrent.atomic.AtomicLong;
 public class Storage implements Closeable,AutoCloseable {
 
     private final RandomAccessFile storeFile;
-    //private final   FileChannel storeChannel;
+    private final   FileChannel storeChannel;
     protected  final AtomicLong totalWrites = new AtomicLong(0);
+    private final long fileSize;
 
 
     public Storage(long fileSize, String fileShortName) throws IOException {
         String fullFileName = "F:/download/" + fileShortName;
         String localFileName = creatStoreFile(fileSize, fullFileName);
-
+        this.fileSize = fileSize;
         storeFile = new RandomAccessFile(localFileName,"rw");
-        //storeChannel = storeFile.getChannel();
+        storeChannel = storeFile.getChannel();
 
     }
 
@@ -40,23 +41,13 @@ public class Storage implements Closeable,AutoCloseable {
      */
     public int store(long offset, ByteBuffer byteBuffer) throws IOException {
         int length;
-        //storeChannel.write(byteBuffer,offset);
-        storeFile.seek(offset);
-        storeFile.write(byteBuffer.get());
+        storeChannel.write(byteBuffer,offset);
         length = byteBuffer.limit();
         totalWrites.addAndGet(length);
         return length;
     }
 
-    public int store(long offset, byte[] byteBuffer) throws IOException {
-        int length;
-        //storeChannel.write(byteBuffer,offset);
-        storeFile.seek(offset);
-        storeFile.write(byteBuffer);
-        length = byteBuffer.length;
-        totalWrites.addAndGet(length);
-        return length;
-    }
+
 
     /**
      * 创建存储文件文件
@@ -70,7 +61,7 @@ public class Storage implements Closeable,AutoCloseable {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            //Tools.silentClose(randomAccessFile);
+            Tools.silentClose(randomAccessFile);
         }
 
         return fullFileName;
@@ -78,7 +69,7 @@ public class Storage implements Closeable,AutoCloseable {
     }
 
     @Override
-    public synchronized void close() throws IOException {
+    public synchronized void close() {
 //        if(storeChannel.isOpen()){
 //            Tools.silentClose(storeChannel,storeFile);
 //        }
