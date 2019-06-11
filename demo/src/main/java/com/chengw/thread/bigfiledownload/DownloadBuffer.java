@@ -16,14 +16,12 @@ public class DownloadBuffer implements Closeable {
     private int offset = 0;
     public final ByteBuffer byteBuffer;
     private final Storage storage;
-    private final long filesize;
 
     public DownloadBuffer(long globalOffSet, long upperBound,final Storage storage)  {
         this.globalOffSet = globalOffSet;
         this.upperBound = upperBound;
         this.byteBuffer = ByteBuffer.allocate(1024*1024);
         this.storage = storage;
-        this.filesize = storage.getFileSize();
     }
 
     public void write(ByteBuffer buf) throws IOException {
@@ -42,7 +40,7 @@ public class DownloadBuffer implements Closeable {
     }
 
     public void flush() throws IOException {
-        Debug.info("将缓冲区写入文件");
+        //Debug.info("将缓冲区写入文件");
         int length;
         byteBuffer.flip();
         length = storage.store(globalOffSet,byteBuffer);

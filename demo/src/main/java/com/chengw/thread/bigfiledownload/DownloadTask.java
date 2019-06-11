@@ -76,7 +76,7 @@ public class DownloadTask implements Runnable {
         }
 
         Debug.info(me + "-Content-Range:" + connection.getHeaderField("Content-Range")
-                    + ",connection:" + connection.getHeaderField("connection"));
+                    + ",connection:" + connection.getHeaderField("Connection"));
 
         in = new BufferedInputStream((connection.getInputStream())){
             @Override
@@ -99,7 +99,6 @@ public class DownloadTask implements Runnable {
             return;
         }
         ReadableByteChannel channel = null;
-
         try {
             channel = Channels.newChannel(issueRequest(requestURL,lowerBound,upperBound));
             ByteBuffer buffer = ByteBuffer.allocate(1024);

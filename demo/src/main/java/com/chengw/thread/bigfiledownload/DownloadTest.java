@@ -81,9 +81,9 @@ public class DownloadTest {
 
         BigFileDownloader downloader = new BigFileDownloader(args[0]);
 
-        int workerThreadCount = argc >=2?Integer.valueOf(args[1]):2;
+        int workerThreadCount =  argc >=2?Integer.valueOf(args[1]):2;
 
-        long reportInterval = 1/*argc >=3?Integer.valueOf(args[2]):2*/;
+        long reportInterval = argc >=3?Integer.valueOf(args[2]):2;
 
         Debug.info("begin downloading " + "Config:worker threads:" + workerThreadCount +"reportInterval:" + reportInterval);
 
