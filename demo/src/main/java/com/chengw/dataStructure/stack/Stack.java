@@ -2,6 +2,7 @@ package com.chengw.dataStructure.stack;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Queue;
 
 /**
  * @author chengw
@@ -18,6 +19,7 @@ public class Stack<T extends Comparable<? super T>> implements Serializable {
     private Integer modCount = 0;
 
     private Integer capacityIncrement;
+
 
     /**初始容量为10,容量增量为0**/
     public Stack() {
