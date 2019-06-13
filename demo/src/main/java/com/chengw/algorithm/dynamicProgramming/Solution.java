@@ -18,17 +18,20 @@ package com.chengw.algorithm.dynamicProgramming;
  * A : "只要在8的基础上加1就行了"
  * A : "所以你不用重新计算因为你记住了第一个等式的值为8!动态规划算法也可以说是 '记住求过的解来节省时间'"
  *
+ * @author chengw
  */
 
 public class Solution {
 
     //递归求解斐波那契数列
-    //问题：很多结点被计算了多次
+    /**问题：很多结点被计算了多次**/
     public static int fibonacci(int n){
-        if(n <= 0)
+        if(n <= 0) {
             return 0;
-        if(n == 1)
+        }
+        if(n == 1) {
             return 1;
+        }
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
 
@@ -37,33 +40,38 @@ public class Solution {
         System.out.println(fib(6));
     }
 
-    //自顶向下的备忘录法
-    //仍然需要递归
+    /**自顶向下的备忘录法
+    仍然需要递归**/
     public static int fibonacci(Integer n){
-        if(n <= 0)
+        if(n <= 0) {
             return n;
+        }
         int[] memo = new int[n+1];
-        for(int i = 0;i <= n;i++)
+        for(int i = 0;i <= n;i++) {
             memo[i] = -1;
+        }
         return fib(n,memo);
     }
 
     public static int fib(int n,int[] memo){
 
-        if(memo[n] != -1)
+        if(memo[n] != -1) {
             return memo[n];
-        if(n <= 2)
+        }
+        if(n <= 2) {
             memo[n] = 1;
-        else
+        } else {
             memo[n] = fib(n-1,memo) + fib(n-2,memo);
+        }
         return memo[n];
 
     }
 
-    //自底向上
+    /**自底向上**/
     public static int fib(int n){
-        if(n <= 0)
+        if(n <= 0) {
             return n;
+        }
         int[] memo = new int[n + 1];
 
         memo[0] = 0;
@@ -74,8 +82,6 @@ public class Solution {
 
         return memo[n];
     }
-
-
 
 
 }

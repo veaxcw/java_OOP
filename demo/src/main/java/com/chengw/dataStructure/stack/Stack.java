@@ -3,6 +3,9 @@ package com.chengw.dataStructure.stack;
 import java.io.Serializable;
 import java.util.Arrays;
 
+/**
+ * @author chengw
+ */
 public class Stack<T extends Comparable<? super T>> implements Serializable {
 
 
@@ -16,7 +19,7 @@ public class Stack<T extends Comparable<? super T>> implements Serializable {
 
     private Integer capacityIncrement;
 
-    //初始容量为10,容量增量为0
+    /**初始容量为10,容量增量为0**/
     public Stack() {
        this(MIN_CAPACITY);
     }
@@ -36,7 +39,11 @@ public class Stack<T extends Comparable<? super T>> implements Serializable {
     public Object getTop() {
         return elementData[modCount];
     }
-    //入栈
+
+    /**
+     * @param obj 将obj 压入栈
+     * @return
+     */
     public synchronized T push(T obj) {
         addElement(obj);
         return obj;
@@ -62,14 +69,20 @@ public class Stack<T extends Comparable<? super T>> implements Serializable {
         Integer oldCapacity = elementData.length;
         Integer newCapacity = oldCapacity  + (capacityIncrement > 0 ?capacityIncrement:oldCapacity);
 
-        if(newCapacity < MIN_CAPACITY)
+        if(newCapacity < MIN_CAPACITY) {
             newCapacity = MIN_CAPACITY;
-        if(newCapacity > MAX_CAPACITY)
+        }
+        if(newCapacity > MAX_CAPACITY) {
             throw new OutOfMemoryError();
+        }
         elementData = Arrays.copyOf(elementData,newCapacity);
 
     }
-    //出栈
+
+    /**
+     * 出栈
+     * @return
+     */
     public synchronized T pop( ) {
 
         return removalElementAt(modCount);
@@ -85,6 +98,9 @@ public class Stack<T extends Comparable<? super T>> implements Serializable {
         return data;
     }
 
+    /**
+     * @return 获取栈顶元素 但不删除
+     */
     public T peek(){
 
         return elementDataAt(modCount - 1);
