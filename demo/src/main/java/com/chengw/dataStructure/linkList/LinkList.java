@@ -1,6 +1,9 @@
 package com.chengw.dataStructure.linkList;
 
-public class LinkList_DIY <E>{
+/**
+ * @author chengw
+ */
+public class LinkList<E>{
 
     private static class Node<E>{
         E data;
@@ -41,8 +44,9 @@ public class LinkList_DIY <E>{
 
 
     public void input(){
-        for(Node temp = head;temp != null;temp = temp.next)
+        for(Node temp = head;temp != null;temp = temp.next) {
             System.out.println(temp.data);
+        }
     }
 
 }

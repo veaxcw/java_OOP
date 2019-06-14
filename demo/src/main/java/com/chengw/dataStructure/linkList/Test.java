@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Test {
-    LinkList_DIY<Integer> example = new LinkList_DIY<Integer>();
+    LinkList<Integer> example = new LinkList<Integer>();
 
     Random rand = new Random();
 
