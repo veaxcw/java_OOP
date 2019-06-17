@@ -22,7 +22,7 @@ public class Storage implements Closeable,AutoCloseable {
 
 
     public Storage(long fileSize, String fileShortName) throws IOException {
-        String fullFileName = "F:/download/" + fileShortName;
+        String fullFileName = "/home/veax/Java/Downloads/" + fileShortName;
         String localFileName = creatStoreFile(fileSize, fullFileName);
         this.fileSize = fileSize;
         storeFile = new RandomAccessFile(localFileName,"rw");
