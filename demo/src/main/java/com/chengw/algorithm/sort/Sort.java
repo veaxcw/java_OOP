@@ -64,10 +64,12 @@ public class Sort{
            int temp = sort[i];
            int j = i - 1;
            for(;j >= 0;j--){
-               if(sort[j] < temp){//dataStructure.sort[j]<temp  目的是找到要插入的位置
+               if(sort[j] < temp){
+                   //dataStructure.sort[j]<temp  目的是找到要插入的位置
                    break;
                }
-               sort[j+1] = j;/**后移**/
+               /**后移**/
+               sort[j+1] = j;
            }
            sort[j+1] = temp;
         }
