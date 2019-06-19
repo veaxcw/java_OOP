@@ -53,7 +53,7 @@ public class Debug {
         SimpleDateFormat sdf = sdfWrapper.get();
         @SuppressWarnings("resource")
         final PrintStream ps = label == Label.INFO ? System.out : System.err;
-        String message = "[" + System.nanoTime() /*sdf.format(new Date())*/ + "][" + label.getName()
+        String message = "[" + /*System.nanoTime()*/ sdf.format(new Date()) + "][" + label.getName()
                 + "][" + Thread.currentThread().getName() + "]:" + format ;
         ps.println(message);
     }

@@ -20,7 +20,7 @@ public class Client {
                 client = new Socket("localhost", 8888);
                 //获取socket输出流，
                 pw = new PrintWriter(client.getOutputStream());
-                pw.write("hi server!");
+                pw.write("hi countDownLatch!");
                 pw.flush();
                 client.shutdownOutput();
                 //获取从服务端发送过来的数据

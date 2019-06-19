@@ -57,7 +57,7 @@ public class DownloadTask implements Runnable {
         final HttpURLConnection connection;
         InputStream in = null;
         connection = (HttpURLConnection) requestURL.openConnection();
-        String strConnectTimeOut = System.getProperty("x.dt.conn.timeout");
+        String strConnectTimeOut = System.getProperty("x.dt.conn.condition");
 
         connection.setConnectTimeout(5000);
         connection.setReadTimeout(5000);
