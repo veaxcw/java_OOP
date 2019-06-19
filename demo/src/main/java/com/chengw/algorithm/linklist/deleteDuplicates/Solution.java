@@ -17,24 +17,15 @@ import java.util.Set;
 public class Solution {
 
 
-    ///todo
+    /**todo**/
     public static ListNode deleteDuplicates(ListNode head) {
-
-        List<Integer> set = new LinkedList<>();
+        Set<Integer> set = new HashSet<>();
 
         ListNode temp = head;
 
         while(temp != null){
 
-
-            if(set.contains(temp.val)){
-                    for (int i = 0;i < set.size();i++){
-                        set.remove((set.get(0)));
-
-                    }
-            }else {
-                set.add(temp.val);
-            }
+            set.add(temp.val);
 
             temp = temp.next;
         }
@@ -52,6 +43,18 @@ public class Solution {
 
         return rsp;
 
+    }
+
+    public ListNode delDuplictes(ListNode head){
+        ListNode current = head;
+        while(current != null && current.next != null){
+            if(current.val == current.next.val){
+                current.next = current.next.next;
+            }else {
+                current = current.next;
+            }
+        }
+        return head;
     }
 
     public static void main(String[] args) {
