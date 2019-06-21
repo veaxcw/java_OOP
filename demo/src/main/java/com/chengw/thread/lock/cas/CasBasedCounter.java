@@ -9,13 +9,13 @@ import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 /**
  * @author chengw
  */
-public class CASBasedCounter {
+public class CasBasedCounter {
 
     private volatile long count;
-    private AtomicLongFieldUpdater<CASBasedCounter> fieldUpdater;
+    private AtomicLongFieldUpdater<CasBasedCounter> fieldUpdater;
 
-    public CASBasedCounter(){
-        fieldUpdater = AtomicLongFieldUpdater.newUpdater(CASBasedCounter.class,"count");
+    public CasBasedCounter(){
+        fieldUpdater = AtomicLongFieldUpdater.newUpdater(CasBasedCounter.class,"count");
     }
 
     public long value(){
@@ -44,7 +44,7 @@ public class CASBasedCounter {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        final CASBasedCounter counter  = new CASBasedCounter();
+        final CasBasedCounter counter  = new CasBasedCounter();
         Thread t;
         Set<Thread> threads = new HashSet<>();
         /**新建20个写 线程**/

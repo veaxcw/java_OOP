@@ -5,7 +5,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 线程转储 显式锁信息示例程序
- * **/
+ *
+ * @author chengw**/
 public class ExplicitLockInfo {
 
     private static final Lock  lock = new ReentrantLock();
