@@ -1,11 +1,12 @@
-package com.chengw.thread.lock.volatileDemo;
+package com.chengw.thread.lock.volatiledemo;
 
 import com.chengw.thread.utils.stf.*;
 
 
 /**
  * 我也没看懂这个方法是干嘛使的
- * ***/
+ *
+ * @author chengw***/
 @ConcurrencyTest(iterations = 200000)
 public class VolatileOrderingDemo {
 
