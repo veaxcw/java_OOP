@@ -1,4 +1,4 @@
-package com.chengw.ioStream.nio.file;
+package com.chengw.nio.file;
 
 import java.io.IOException;
 import java.nio.file.Files;
