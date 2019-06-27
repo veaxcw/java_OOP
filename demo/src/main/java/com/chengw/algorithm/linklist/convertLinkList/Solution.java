@@ -5,6 +5,7 @@ import com.chengw.algorithm.linklist.common.ListNode;
 import java.util.Arrays;
 
 /**
+ * 反转链表
  * @author chengw
  */
 public class Solution {
