@@ -27,12 +27,13 @@ public class TimeClient {
 
         try {
             socket = new Socket("localhost",port);
+            socket.setSoTimeout(3000);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(),true);
-            out.println("QUERY TIME ORDER");
+            out.println("QUERY TIME ORDER\n");
             System.out.println("Send oder 2 server succeed");
             String resp = in.readLine();
-            System.out.println("now is" + resp);
+            System.out.println("now is " + resp);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

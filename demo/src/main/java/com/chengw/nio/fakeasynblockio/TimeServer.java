@@ -1,10 +1,13 @@
-package com.chengw.nio.bio;
+package com.chengw.nio.fakeasynblockio;
 
-import com.chengw.nio.fakeasynblockio.TimerServerHandlerExcutePool;
+import com.chengw.nio.bio.TimeServerHandler;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * 伪异步阻塞模型
@@ -28,11 +31,15 @@ public class TimeServer {
             System.out.println("服务端已启动,端口号：" + port);
             Socket socket = null;
 
+            /**
+             * 创建io任务线程池
+             * ***/
+            TimerServerHandlerExcutePool singleExecutor = new TimerServerHandlerExcutePool(10, 10000);
 
             while (true) {
                 socket = server.accept();
                 if(socket != null){
-                    new Thread(new TimeServerHandler(socket)).start();
+                    singleExecutor.execute(new TimeServerHandler(socket));
                 }
             }
 
