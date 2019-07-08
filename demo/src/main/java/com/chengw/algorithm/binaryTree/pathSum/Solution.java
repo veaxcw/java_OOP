@@ -20,9 +20,9 @@ public class Solution {
 
     //todo
 
-    private List<Integer> suma = new ArrayList<>();
+    private static List<Integer> suma = new ArrayList<>();
 
-    public int pathSum(TreeNode root, int sum) {
+    public static int pathSum(TreeNode root, int sum) {
 
         inOrder(root);
 
@@ -37,13 +37,13 @@ public class Solution {
 
     }
 
-    private void inOrder(TreeNode root){
+    private static void inOrder(TreeNode root){
         if(root != null){
             inOrder(root.left);
             for(int i = 0;i < suma.size();i++){
                 suma.set(i,(suma.get(i) + root.val));
             }
-            suma.add(root.val);
+
             inOrder(root.right);
         }
 
@@ -60,6 +60,14 @@ public class Solution {
 
         root.left.left.left = new TreeNode(3);
         root.left.left.right = new TreeNode(-2);
+
+        root.left.right.right = new TreeNode(1);
+
+        root.right.right = new TreeNode(11);
+
+        pathSum(root,8);
+
+
 
         //todo
 
