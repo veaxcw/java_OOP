@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class Solution {
 
+    //todo
+
     private List<Integer> suma = new ArrayList<>();
 
     public int pathSum(TreeNode root, int sum) {
@@ -58,6 +60,8 @@ public class Solution {
 
         root.left.left.left = new TreeNode(3);
         root.left.left.right = new TreeNode(-2);
+
+        //todo
 
 
 
