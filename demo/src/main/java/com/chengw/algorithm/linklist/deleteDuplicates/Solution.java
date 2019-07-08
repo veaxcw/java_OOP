@@ -2,10 +2,7 @@ package com.chengw.algorithm.linklist.deleteDuplicates;
 
 import com.chengw.algorithm.linklist.common.ListNode;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 /**
  * 给定一个排序链表，删除所有含有重复数字的节点，只保留原始链表中 没有重复出现 的数字。
  * ***/
@@ -19,7 +16,7 @@ public class Solution {
 
     /**todo**/
     public static ListNode deleteDuplicates(ListNode head) {
-        Set<Integer> set = new HashSet<>();
+        Set<Integer> set = new TreeSet<>();
 
         ListNode temp = head;
 

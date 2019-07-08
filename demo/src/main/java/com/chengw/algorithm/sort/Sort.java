@@ -57,6 +57,7 @@ public class Sort{
 
     }
 
+
     public void insertSort(){//直接插入排序
         init();
         long start = System.currentTimeMillis();

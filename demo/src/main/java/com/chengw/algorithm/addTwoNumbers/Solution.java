@@ -35,6 +35,9 @@ public class Solution {
        int val;
 
         //代码简洁之道
+       /**
+       *wtf
+       * ***/
        val = l1 == null?(0 + (l2 == null ?0:l2.val)):(l1.val + (l2 == null ?0:l2.val));
 
        listNode.val = val%10;
