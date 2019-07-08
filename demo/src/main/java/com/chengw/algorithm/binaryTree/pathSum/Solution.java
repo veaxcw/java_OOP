@@ -21,16 +21,45 @@ public class Solution {
     private List<Integer> suma = new ArrayList<>();
 
     public int pathSum(TreeNode root, int sum) {
-        //todo
 
-        if(root != null){
-            suma.add(root.val);
-            for(Integer i:suma){
-                i += root.val;
+        inOrder(root);
+
+        int r = 0;
+        for(Integer i : suma){
+            if( i == sum){
+                r++;
             }
         }
 
-        return 0;
+        return r;
+
+    }
+
+    private void inOrder(TreeNode root){
+        if(root != null){
+            inOrder(root.left);
+            for(int i = 0;i < suma.size();i++){
+                suma.set(i,(suma.get(i) + root.val));
+            }
+            suma.add(root.val);
+            inOrder(root.right);
+        }
+
+
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(10);
+        root.left = new TreeNode(5);
+        root.right = new TreeNode(-3);
+
+        root.left.left = new TreeNode(3);
+        root.left.right = new TreeNode(2);
+
+        root.left.left.left = new TreeNode(3);
+        root.left.left.right = new TreeNode(-2);
+
+
 
     }
 
