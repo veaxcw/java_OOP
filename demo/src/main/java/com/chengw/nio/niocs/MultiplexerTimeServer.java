@@ -31,7 +31,7 @@ public class MultiplexerTimeServer implements Runnable {
             /**
              * 绑定服务端  IP  端口
              * **/
-            acceptorServer.bind(new InetSocketAddress(InetAddress.getByName("127.10.0.1"),port));
+            acceptorServer.bind(new InetSocketAddress(InetAddress.getByName("localhost"),port));
             /**
              * 配置非阻塞模式
              * ***/
@@ -67,6 +67,7 @@ public class MultiplexerTimeServer implements Runnable {
                  * 设定延时
                  * ***/
                 selector.select(1000);
+                selector.wakeup();
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
                 Iterator<SelectionKey> iterator = selectionKeys.iterator();
                 SelectionKey selectionKey = null;
@@ -75,7 +76,7 @@ public class MultiplexerTimeServer implements Runnable {
                     iterator.remove();
                     handInput(selectionKey);
                     if(selectionKey != null){
-                        selectionKey.cancel();;
+                        selectionKey.cancel();
                         if(selectionKey.channel() != null){
                             selectionKey.channel().close();
                         }
@@ -85,13 +86,13 @@ public class MultiplexerTimeServer implements Runnable {
                 e.printStackTrace();
             }
 
-            if(selector != null){
-                try {
-                    selector.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+//            if(selector != null){
+//                try {
+//                    selector.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
         }
     }
 
