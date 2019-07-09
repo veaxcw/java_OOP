@@ -8,9 +8,8 @@ import java.util.HashMap;
  * 获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。
  * 写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。
  *
- * 进阶:
+ * LRU:淘汰最近最少使用的节点
  *
- * 你是否可以在 O(1) 时间复杂度内完成这两种操作？
  *
  * 示例:
  * @author chengw
@@ -25,7 +24,7 @@ public class LRUCache {
     private int capacity;
 
     /**
-     * 假的头结点 和 尾结点
+     * 伪的头结点 和 尾结点
      * **/
     private DoubleLinkNode head,tail;
 
@@ -40,7 +39,7 @@ public class LRUCache {
     }
 
     /**
-     * 将每次get地节点放到尾结点
+     * 将每次get地节点放到头结点
      * **/
     public int get(int key) {
         DoubleLinkNode node = cache.get(key);
@@ -107,6 +106,9 @@ public class LRUCache {
 
     }
 
+    /**
+     * @return 返回被删除的节点
+     */
     private DoubleLinkNode delTail(){
         DoubleLinkNode pre = tail.pre;
 

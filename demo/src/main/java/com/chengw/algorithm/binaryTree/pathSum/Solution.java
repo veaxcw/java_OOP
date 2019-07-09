@@ -22,32 +22,23 @@ public class Solution {
 
     private static List<Integer> suma = new ArrayList<>();
 
-    public static int pathSum(TreeNode root, int sum) {
+    public  int pathSum(TreeNode root, int sum) {
 
-        inOrder(root);
-
-        int r = 0;
-        for(Integer i : suma){
-            if( i == sum){
-                r++;
-            }
+        if(root == null){
+            return 0;
         }
 
-        return r;
+        return cal(root,sum) + pathSum(root.left,sum) + pathSum(root.right,sum);
 
     }
 
-    private static void inOrder(TreeNode root){
-        if(root != null){
-            inOrder(root.left);
-            for(int i = 0;i < suma.size();i++){
-                suma.set(i,(suma.get(i) + root.val));
-            }
+    private  int cal(TreeNode root,int sum){
 
-            inOrder(root.right);
+        if(root == null){
+            return 0;
         }
-
-
+        sum -= root.val;
+        return (sum == 0?1:0) + cal(root.left,sum) + cal(root.right,sum);
     }
 
     public static void main(String[] args) {
@@ -65,7 +56,7 @@ public class Solution {
 
         root.right.right = new TreeNode(11);
 
-        pathSum(root,8);
+        //pathSum(root,8);
 
 
 
