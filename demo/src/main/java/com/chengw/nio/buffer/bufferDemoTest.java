@@ -1,6 +1,5 @@
 package com.chengw.nio.buffer;
 
-import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -13,7 +12,6 @@ import java.nio.file.Paths;
  */
 public class bufferDemoTest {
 
-    @Test
     public void copy() throws FileNotFoundException {
         FileInputStream fis = new FileInputStream("F:/VolatileViableDemo.class");
         FileChannel channel = fis.getChannel();

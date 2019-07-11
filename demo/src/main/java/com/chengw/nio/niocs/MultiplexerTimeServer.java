@@ -28,14 +28,16 @@ public class MultiplexerTimeServer implements Runnable {
         try {
             selector = Selector.open();
             acceptorServer = ServerSocketChannel.open();
-            /**
-             * 绑定服务端  IP  端口
-             * **/
-            acceptorServer.bind(new InetSocketAddress(InetAddress.getByName("localhost"),port));
+
             /**
              * 配置非阻塞模式
              * ***/
             acceptorServer.configureBlocking(false);
+            /**
+             * 绑定服务端  IP  端口
+             * **/
+            acceptorServer.bind(new InetSocketAddress(InetAddress.getByName("localhost"),port));
+
 
             /**
              * 将channel 注册selector
@@ -67,7 +69,6 @@ public class MultiplexerTimeServer implements Runnable {
                  * 设定延时
                  * ***/
                 selector.select(1000);
-                selector.wakeup();
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
                 Iterator<SelectionKey> iterator = selectionKeys.iterator();
                 SelectionKey selectionKey = null;
