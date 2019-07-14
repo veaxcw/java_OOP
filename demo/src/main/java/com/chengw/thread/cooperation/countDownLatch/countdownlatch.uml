@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.chengw.thread.cooperation.countDownLatch.SampleServiceA</OriginalElement>
+  <nodes>
+    <node x="0.0" y="158.0">com.chengw.thread.cooperation.countDownLatch.SampleServiceC</node>
+    <node x="309.0" y="158.0">com.chengw.thread.cooperation.countDownLatch.SampleServiceB</node>
+    <node x="154.0" y="158.0">com.chengw.thread.cooperation.countDownLatch.SampleServiceA</node>
+    <node x="228.0" y="0.0">com.chengw.thread.cooperation.countDownLatch.Service</node>
+    <node x="134.0" y="0.0">lombok.Data</node>
+    <node x="154.0" y="79.0">com.chengw.thread.cooperation.countDownLatch.AbstractService</node>
+    <node x="0.0" y="232.0">com.chengw.thread.cooperation.countDownLatch.ServerManager</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.chengw.thread.cooperation.countDownLatch.SampleServiceA" target="com.chengw.thread.cooperation.countDownLatch.AbstractService">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.chengw.thread.cooperation.countDownLatch.SampleServiceB" target="com.chengw.thread.cooperation.countDownLatch.AbstractService">
+      <point x="0.0" y="-14.5" />
+      <point x="376.5" y="133.0" />
+      <point x="266.5" y="133.0" />
+      <point x="45.0" y="14.5" />
+    </edge>
+    <edge source="com.chengw.thread.cooperation.countDownLatch.AbstractService" target="lombok.Data">
+      <point x="-33.75" y="-14.5" />
+      <point x="187.75" y="54.0" />
+      <point x="171.0" y="54.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.chengw.thread.cooperation.countDownLatch.SampleServiceC" target="com.chengw.thread.cooperation.countDownLatch.AbstractService">
+      <point x="0.0" y="-14.5" />
+      <point x="67.0" y="133.0" />
+      <point x="176.5" y="133.0" />
+      <point x="-45.0" y="14.5" />
+    </edge>
+    <edge source="com.chengw.thread.cooperation.countDownLatch.AbstractService" target="com.chengw.thread.cooperation.countDownLatch.Service">
+      <point x="33.75" y="-14.5" />
+      <point x="255.25" y="54.0" />
+      <point x="272.0" y="54.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="91.0" y="93.5" />
+  <SelectedNodes>
+    <node>com.chengw.thread.cooperation.countDownLatch.ServerManager</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
