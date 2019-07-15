@@ -31,8 +31,7 @@ public class Solution {
 
     public List<String> readBinaryWatch(int num) {
 
-//todo
-        return null;
+    return null;
 
     }
 
@@ -50,8 +49,7 @@ public class Solution {
             min += Math.pow(2,i - 9)*bytes[i];
         }
 
-//        return hour + ":"  + min < 10?(;
-        //todo
+        //return hour + ":"  + min < 10?(;
         return null;
     }
 
