@@ -1,11 +1,10 @@
 package com.chengw.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
-import org.apache.poi.sl.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -17,6 +16,8 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static com.chengw.utils.String2JSON.writeToJson;
+
 /**
  * Excel 转Json
  * @author chengw
@@ -26,6 +27,11 @@ public class Excel2JSON {
     private static final String PATH_BASE = "E:/材料做法表 文档/00-内容库 v1.0";
 
     private static  List<Map<String,Object>> result = new LinkedList<>();
+
+    public static final String EXCEL2003 = "xls";
+
+    public static final String EXCEL2007 = "xlsx";
+
 
 
     /**
@@ -51,7 +57,7 @@ public class Excel2JSON {
             for(int j = 0; j < firstPart;j++){
                 XSSFCell cell = row.getCell(j);
                 String stringCellValue = getValue(cell);
-                if(stringCellValue != null && !stringCellValue.equals("")){
+                if(stringCellValue != null){
                     map.put(rowName.get(j),stringCellValue);
                 }
 
@@ -105,23 +111,26 @@ public class Excel2JSON {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //save(fileAbsolutePath,s);
         System.out.println("保存完成:" + fileAbsolutePath);
 
     }
 
     /**
      * 获取07以上版本xlsx 工作表
-     * @param FileAbsolutePath
+     * @param fileAbsolutePath
      * @return
      */
-    public static XSSFWorkbook getWorkBook(String FileAbsolutePath){
+    public static XSSFWorkbook getWorkBook(String fileAbsolutePath){
         FileInputStream fis = null;
         XSSFWorkbook workbook = null;
 
         try {
-             fis = new FileInputStream(FileAbsolutePath);
-             workbook = new XSSFWorkbook(fis);
+            fis = new FileInputStream(fileAbsolutePath);
+            String fileExt = fileAbsolutePath.substring(fileAbsolutePath.lastIndexOf("."));
+            if(EXCEL2007.equals(fileExt)){
+                workbook = new XSSFWorkbook(fis);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -146,74 +155,7 @@ public class Excel2JSON {
     }
 
 
-    /**
-     * 保存为带格式的json
-     * @param filePath 文件全路径
-     * @param string json string
-     * @throws IOException
-     */
-    public static void writeToJson(String filePath,String string) throws IOException
-    {
-        File file = new File(filePath);
-        if(!file.exists()) {
-            file.createNewFile();
-        }
-        char [] stack = new char[1024];
-        int top=-1;
-        StringBuffer sb = new StringBuffer();
-        char [] charArray = string.toCharArray();
-        for(int i=0;i<charArray.length;i++){
-            char c= charArray[i];
-            if ('{' == c || '[' == c) {
-                stack[++top] = c;
-                sb.append(charArray[i]);
-                sb.append("\n");
-                continue;
-            }
-            if ((i + 1) <= (charArray.length - 1)) {
-                char d = charArray[i+1];
-                if ('}' == d || ']' == d) {
-                    top--;
-                    sb.append(charArray[i]);
-                    sb.append("\n");
-                    continue;
-                }
-            }
-            if (',' == c) {
-                sb.append(charArray[i] + "\n");
-                continue;
-            }
-            sb.append(c);
-        }
-        Writer write = new FileWriter(file);
-        write.write(sb.toString());
-        write.flush();
-        write.close();
-    }
 
-    public static void save(String filePath,String s) {
-        File file = null;
-        FileOutputStream fis = null;
-        try {
-            file = new File(filePath);
-            if(!file.exists()) {
-                file.createNewFile();
-            }
-            fis = new FileOutputStream(file);
-            fis.write(s.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if(fis != null){
-                try {
-                    fis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-    }
 
     /**
      * 解析合并单元格
@@ -291,7 +233,7 @@ public class Excel2JSON {
         }
         switch (cell.getCellType()) {
             /**数值型**/
-            case Cell.CELL_TYPE_NUMERIC:
+            case NUMERIC:
                 if (HSSFDateUtil.isCellDateFormatted(cell)) {
                     /**如果是date类型则 ，获取该cell的date值**/
                     Date date = HSSFDateUtil.getJavaDate(cell.getNumericCellValue());
@@ -310,7 +252,7 @@ public class Excel2JSON {
                 }
                 break;
             /** 公式类型**/
-            case Cell.CELL_TYPE_FORMULA:
+            case FORMULA:
                 /**读公式计算值**/
                 value = String.valueOf(cell.getNumericCellValue());
                 if (value.equals("NaN")) {
@@ -319,7 +261,7 @@ public class Excel2JSON {
                 }
                 break;
             /*** 布尔类型***/
-            case Cell.CELL_TYPE_BOOLEAN:
+            case BOOLEAN:
                 value = " "+ cell.getBooleanCellValue();
                 break;
             default:
