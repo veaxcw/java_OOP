@@ -104,7 +104,7 @@ public class Excel2JSON {
         String s = JSON.toJSONString(result);
 
         String fileNameWithoutExt = fileName.substring(0, fileName.lastIndexOf("."));
-        String fileAbsolutePath = PATH_BASE + "/" + fileNameWithoutExt + ".json";
+        String fileAbsolutePath = PATH_BASE + "/json/" + fileNameWithoutExt + ".json";
 
         try {
             writeToJson(fileAbsolutePath,s);
@@ -126,7 +126,7 @@ public class Excel2JSON {
 
         try {
             fis = new FileInputStream(fileAbsolutePath);
-            String fileExt = fileAbsolutePath.substring(fileAbsolutePath.lastIndexOf("."));
+            String fileExt = fileAbsolutePath.substring(fileAbsolutePath.lastIndexOf(".")+1);
             if(EXCEL2007.equals(fileExt)){
                 workbook = new XSSFWorkbook(fis);
             }
@@ -154,11 +154,8 @@ public class Excel2JSON {
         return rowName;
     }
 
-
-
-
     /**
-     * 解析合并单元格
+     * 解析合并行单元格
      * **/
     public static List<CellRangeAddress> getCombineCell(XSSFSheet sheet)
     {
@@ -168,20 +165,28 @@ public class Excel2JSON {
         /**遍历所有的合并单元格**/
         for(int i = 0; i<sheetMergerCount;i++)
         {
-            /***获得合并单元格保存进list中**/
+            /***只保存行合并的单元格**/
             CellRangeAddress ca = sheet.getMergedRegion(i);
-            list.add(ca);
+            if(ca.getFirstColumn() == 0 && ca.getLastColumn() == 0){
+                list.add(ca);
+            }
         }
         return list;
     }
 
+    /**
+     * 返回合并单元格的起始行，于束行
+     * @param combineCell
+     * @param cell
+     * @return
+     */
     public static Map<String,Integer> getRowNum(List<CellRangeAddress> combineCell,XSSFCell cell){
         Map<String,Integer> map = new HashMap<>(2);
-        for(int i = 1;i < combineCell.size();i++){
+        int row = cell.getAddress().getRow();
+        for(int i = 0;i < combineCell.size();i++){
             CellRangeAddress cellRangeAddress = combineCell.get(i);
             int firstRow = cellRangeAddress.getFirstRow();
             int lastRow = cellRangeAddress.getLastRow();
-            int row = cell.getAddress().getRow();
             if( row >= firstRow && row <= lastRow ){
                 map.put("firstRow",firstRow);
                 map.put("lastRow",lastRow);

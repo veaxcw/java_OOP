@@ -13,16 +13,18 @@ public class String2JSON {
     public static void writeToJson(String filePath,String string) throws IOException
     {
         File file = new File(filePath);
-        if(!file.exists()) {
-            file.createNewFile();
+        if(file.exists()){
+            file.delete();
         }
+        file.createNewFile();
         char [] stack = new char[1024];
         int top=-1;
         StringBuffer sb = new StringBuffer();
         char [] charArray = string.toCharArray();
         for(int i=0;i<charArray.length;i++){
             char c= charArray[i];
-            if ('{' == c || '[' == c) {
+            boolean a = '{' == c || ('[' == c && charArray[i+1] == '{');
+            if (a) {
                 stack[++top] = c;
                 sb.append(charArray[i]);
                 sb.append("\n");
@@ -30,7 +32,8 @@ public class String2JSON {
             }
             if ((i + 1) <= (charArray.length - 1)) {
                 char d = charArray[i+1];
-                if ('}' == d || ']' == d) {
+                boolean f = '}' == d || (']' == d && '}' == c);
+                if (f) {
                     top--;
                     sb.append(charArray[i]);
                     sb.append("\n");
