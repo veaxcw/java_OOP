@@ -3,8 +3,6 @@ package com.chengw.utils;
 import com.alibaba.fastjson.JSON;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -16,13 +14,13 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static com.chengw.utils.String2JSON.writeToJson;
+import static com.chengw.utils.String2JSONFileUtil.writeToJson;
 
 /**
  * Excel 转Json
  * @author chengw
  */
-public class Excel2JSON {
+public class Excel2JSONUtils {
 
     private static final String PATH_BASE = "E:/材料做法表 文档/00-内容库 v1.0";
 

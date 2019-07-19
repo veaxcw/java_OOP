@@ -2,7 +2,7 @@ package com.chengw.utils;
 
 import java.io.*;
 
-public class String2JSON {
+public class String2JSONFileUtil {
 
     /**
      * 保存为带格式的json
