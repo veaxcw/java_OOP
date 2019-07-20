@@ -10,10 +10,10 @@ public class Demo1 {
         Integer b = 1;
         Integer c = new Integer(1);
         int d = 1;
-        System.out.println(b.hashCode());
-        System.out.println(c.hashCode());
-        System.out.println(a.hashCode());
-        System.out.println(d);
+        System.out.println(a == b);
+        System.out.println(a == c);
+        System.out.println(a == d);
+        System.out.println(a == d);
 
 
     }
