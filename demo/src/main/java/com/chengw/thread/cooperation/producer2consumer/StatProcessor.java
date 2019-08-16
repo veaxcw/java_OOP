@@ -5,12 +5,9 @@ import java.util.Map;
 /**
  * @author veax
  */
-public class StatProcessor {
-    public StatProcessor(int sampleInternal, int traceIdDiff, String expectedOperationName, String expectedExternalDeviceList) {
+public interface StatProcessor {
 
-    }
+    void process(String record);
 
-    public Map<Long, DelayItem> getResult() {
-        return null;
-    }
+     Map<Long, DelayItem> getResult();
 }

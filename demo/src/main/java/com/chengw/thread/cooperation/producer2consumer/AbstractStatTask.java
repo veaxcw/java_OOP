@@ -15,20 +15,19 @@ public abstract class AbstractStatTask implements Runnable {
 
     private static final String TIME_STAMP_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 
-    private final Calendar calendar;
+    private  Calendar calendar;
 
-    private final SimpleDateFormat sdf;
+    private  SimpleDateFormat sdf;
     /**采样周期**/
-    private final int sampleInternal;
+    private  int sampleInternal;
     /**统计处理业务逻辑**/
-    protected final StatProcessor recordProcessor;
+    protected  StatProcessor recordProcessor;
 
     public AbstractStatTask(int sampleInternal,int traceIdDiff,
                             String expectedOperationName,
                             String expectedExternalDeviceList){
 
-        this(sampleInternal,new StatProcessor(sampleInternal,traceIdDiff,
-                expectedOperationName,expectedExternalDeviceList));
+
     }
 
     public AbstractStatTask(int sampleInternal,StatProcessor recordProcessor) {
@@ -40,12 +39,12 @@ public abstract class AbstractStatTask implements Runnable {
         this.calendar = Calendar.getInstance(stz);
     }
 
-    public abstract void doCalucate() throws IOException,InterruptedException;
+    public abstract void doCalculate() throws IOException,InterruptedException;
 
     @Override
     public void run() {
         try {
-            doCalucate();
+            doCalculate();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
