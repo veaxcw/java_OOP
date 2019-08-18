@@ -1,5 +1,7 @@
 package com.chengw.thread.cooperation.producer2consumer;
 
+import com.chengw.thread.cooperation.producer2consumer.product.DelayItem;
+
 import java.util.Map;
 
 /**

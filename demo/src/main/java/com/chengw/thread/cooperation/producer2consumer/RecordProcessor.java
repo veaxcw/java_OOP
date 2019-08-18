@@ -1,5 +1,9 @@
 package com.chengw.thread.cooperation.producer2consumer;
 
+import com.chengw.thread.cooperation.producer2consumer.product.DelayItem;
+import com.chengw.thread.cooperation.producer2consumer.common.FastTimeStampParser;
+import lombok.Data;
+
 import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.TreeMap;
@@ -9,9 +13,10 @@ import java.util.TreeMap;
  *
  * @author chengw
  */
+@Data
 public class RecordProcessor implements StatProcessor {
 
-    private Map<Long,DelayItem> summaryResult;
+    private Map<Long, DelayItem> summaryResult;
 
     private static final FastTimeStampParser FAST_TIME_STAMP_PARSER = new FastTimeStampParser();
 
@@ -65,6 +70,7 @@ public class RecordProcessor implements StatProcessor {
     /**
      * 延时响应数据
      * ***/
+    @Data
     class DelayData{
         private String traceId;
         private String operationName;
@@ -74,37 +80,5 @@ public class RecordProcessor implements StatProcessor {
         public DelayData() {
         }
 
-
-        public String getTraceId() {
-            return traceId;
-        }
-
-        public void setTraceId(String traceId) {
-            this.traceId = traceId;
-        }
-
-        public String getOperationName() {
-            return operationName;
-        }
-
-        public void setOperationName(String operationName) {
-            this.operationName = operationName;
-        }
-
-        public String getReqTime() {
-            return reqTime;
-        }
-
-        public void setReqTime(String reqTime) {
-            this.reqTime = reqTime;
-        }
-
-        public String getRepTime() {
-            return repTime;
-        }
-
-        public void setRepTime(String repTime) {
-            this.repTime = repTime;
-        }
     }
 }
