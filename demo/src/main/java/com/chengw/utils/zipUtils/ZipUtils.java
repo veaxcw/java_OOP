@@ -1,4 +1,4 @@
-package com.chengw.utils;
+package com.chengw.utils.zipUtils;
 
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.ArchiveException;

@@ -1,4 +1,4 @@
-package com.chengw.utils;
+package com.chengw.utils.excelUtils;
 
 import com.alibaba.fastjson.JSON;
 
@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static com.chengw.utils.String2JSONFileUtil.writeToJson;
+import static com.chengw.utils.jsonUtils.String2JSONFileUtil.writeToJson;
 
 /**
  * Excel 转Json

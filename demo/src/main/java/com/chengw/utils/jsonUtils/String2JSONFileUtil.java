@@ -1,7 +1,10 @@
-package com.chengw.utils;
+package com.chengw.utils.jsonUtils;
 
 import java.io.*;
 
+/**
+ * @author chengw
+ */
 public class String2JSONFileUtil {
 
     /**
