@@ -2,32 +2,30 @@ package com.chengw.reflection;
 
 import java.lang.reflect.Constructor;
 
+/**
+ * @author chengw
+ */
 public class Test01  {
-//���ʹ��췽��
+
 	public static void main(String[] args) {
-		Class<Book> book = Book.class;//��ȡ��̬��Book
-		@SuppressWarnings("rawtypes")
-		Constructor[] declaredConstructor = book.getDeclaredConstructors();//����һ��Consturctor�����飬����ȡbook���еĹ��췽��
+		Class<Book> book = Book.class;
+		Constructor[] declaredConstructor = book.getDeclaredConstructors();
 		for(int i = 0;i < declaredConstructor.length; i++) {
-			@SuppressWarnings("rawtypes")
 			Constructor con = declaredConstructor[i];
-			System.out.println("�Ƿ�������ɱ������Ĳ�����"+con.isVarArgs());
-			@SuppressWarnings("rawtypes")
-			Class[] parameterTypes = con.getParameterTypes();//��ȡ���в�������
+			System.out.println("参数"+con.isVarArgs());
+			Class[] parameterTypes = con.getParameterTypes();
 			for(int j = 0; j < parameterTypes.length; j++){
-				System.out.println("�������ͣ�" + parameterTypes[j]);
+				System.out.println("参数类型" + parameterTypes[j]);
 			}
-			@SuppressWarnings("rawtypes")
 			Class[] exceptionTypes = con.getExceptionTypes();
 			for(int j = 0;j < exceptionTypes.length;j++) {
-				System.out.println("�쳣���ͣ�" + exceptionTypes[j]);
+				System.out.println("异常类型" + exceptionTypes[j]);
 			}
-			//����һ��δʵ��������book1
 			Book book1 = null;
 			while(book1 == null) {
 				try {
 					if(i ==1 ) {
-						book1 = (Book)con.newInstance("java�̳�",10);
+						book1 = (Book)con.newInstance("java",10);
 					}
 					else if(i == 2) {
 						book1 = (Book)con.newInstance();
@@ -37,7 +35,7 @@ public class Test01  {
 							book1 = (Book)con.newInstance(parameters);
 						}
 				}catch(Exception e) {
-					System.out.println("��������ʱ�����쳣������ִ��setAccessible()");
+					System.out.println("为私有方法");
 					con.setAccessible(true);
 				}
 				book1.print();
