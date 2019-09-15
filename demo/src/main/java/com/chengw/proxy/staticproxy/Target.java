@@ -1,4 +1,4 @@
-package com.chengw.proxy.staticProxy;
+package com.chengw.proxy.staticproxy;
 
 public class Target implements Operation {
 

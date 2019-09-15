@@ -1,6 +1,6 @@
-package com.chengw.proxy.staticProxy;
+package com.chengw.proxy.staticproxy.impl;
 
-import com.chengw.proxy.dynamicProxy.Operation;
+import com.chengw.proxy.dynamicproxy.Operation;
 
 public class Agent implements Operation {
 
