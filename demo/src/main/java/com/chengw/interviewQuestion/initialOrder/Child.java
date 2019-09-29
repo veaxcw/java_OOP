@@ -3,9 +3,9 @@ package com.chengw.interviewQuestion.initialOrder;
 
 /**
  * 初始化顺序
- * 1.父类静态域
+ * 1.父类静态字段
  * 2.父类静态代码块
- * 3.子类静态域
+ * 3.子类静态字段
  * 4.子类静态代码快
  * 5.父类普通代码块
  * 5.父类构造方法
@@ -14,7 +14,7 @@ package com.chengw.interviewQuestion.initialOrder;
  *
  * @author veax**/
 
-public class InitialOrder extends Parents {
+public class Child extends Parents {
     static {
         System.out.println("子类静态代码块");
     }
@@ -22,7 +22,7 @@ public class InitialOrder extends Parents {
         System.out.println("子类普通代码块");
     }
 
-    public InitialOrder() {
+    public Child() {
         System.out.println("子类构造方法");
     }
 

@@ -6,7 +6,7 @@ package com.chengw.interviewQuestion.initialOrder;
 public class Test {
 
     public static void main(String[] args) {
-        InitialOrder demo = new InitialOrder();
+        Child demo = new Child();
     }
 
 }

@@ -1,9 +1,13 @@
-package com.chengw.web.client.client;
+package com.chengw.web.socket.tcp.client;
 
 import java.io.*;
 import java.net.Socket;
 
+/**
+ * @author chengw
+ */
 public class Client {
+
     public Client() {
         init();
     }
@@ -32,8 +36,9 @@ public class Client {
                     e.printStackTrace();
                 }
                 String info;
-                if ((info = br.readLine()) != null)
+                if ((info = br.readLine()) != null) {
                     System.out.println("Server said :" + info);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
