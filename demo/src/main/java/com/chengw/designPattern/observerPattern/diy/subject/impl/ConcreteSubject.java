@@ -1,38 +1,38 @@
-package com.chengw.designPattern.observerPattern;
+package com.chengw.designPattern.observerPattern.diy.subject.impl;
 
-import java.util.Iterator;
+import com.chengw.designPattern.observerPattern.diy.observer.Observer;
+import com.chengw.designPattern.observerPattern.diy.subject.Subject;
+
 import java.util.Vector;
 
 /**
  * @author chengw
  */
-public class Subject implements ISubject {
+public class ConcreteSubject implements Subject {
 
     private float temperature;
     private String warningLevel;
-    private final Vector<IObserver> vector;
+    private final Vector<Observer> vector;
 
-    public Subject() {
+    public ConcreteSubject() {
         this.vector = new Vector<>();
     }
 
     @Override
-    public boolean add(IObserver observer) {
+    public boolean add(Observer observer) {
         return vector.add(observer);
     }
 
     @Override
-    public boolean remove(IObserver observer) {
+    public boolean remove(Observer observer) {
 
-        return vector.remove(vector);
+        return vector.remove(observer);
     }
 
     @Override
     public void notifyAllObserver() {
         System.out.print("=====气象部门发布高温" + this.warningLevel +"警报");
-        Iterator<IObserver> iterator = vector.iterator();
-        while(iterator.hasNext()){
-            IObserver observer = iterator.next();
+        for (Observer observer : vector) {
             observer.update(this);
         }
 

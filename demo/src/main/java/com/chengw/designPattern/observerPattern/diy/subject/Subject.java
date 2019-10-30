@@ -1,23 +1,25 @@
-package com.chengw.designPattern.observerPattern;
+package com.chengw.designPattern.observerPattern.diy.subject;
+
+import com.chengw.designPattern.observerPattern.diy.observer.Observer;
 
 /**
  * @author chengw
  */
-public interface ISubject {
+public interface Subject {
 
     /**
      * 增加观察者
      * @param observer
      * @return
      */
-     boolean add(IObserver observer);
+     boolean add(Observer observer);
 
     /**
      * 删除观察者
      * @param observer
      * @return
      */
-     boolean remove(IObserver observer);
+     boolean remove(Observer observer);
 
 
     /**
