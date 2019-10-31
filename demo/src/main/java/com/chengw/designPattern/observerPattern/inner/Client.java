@@ -2,8 +2,6 @@ package com.chengw.designPattern.observerPattern.inner;
 
 import com.chengw.designPattern.observerPattern.inner.display.DisplayElement;
 import com.chengw.designPattern.observerPattern.inner.display.impl.GovObserverImpl;
-import com.chengw.designPattern.observerPattern.inner.observer.GovObserver;
-import com.chengw.designPattern.observerPattern.inner.observer.PersonObserver;
 import com.chengw.designPattern.observerPattern.inner.subject.ConcreteSubject;
 
 import java.util.Random;

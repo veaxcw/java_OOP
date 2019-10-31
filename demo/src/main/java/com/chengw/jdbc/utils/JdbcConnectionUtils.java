@@ -1,5 +1,6 @@
 package com.chengw.jdbc.utils;
 
+import com.chengw.jdbc.po.SysUserBean;
 import com.chengw.jdbc.po.UserBean;
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -21,7 +22,7 @@ public class JdbcConnectionUtils {
     }
 
     private final static String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final static String URL = "jdbc:mysql://localhost:3306/demo?" +
+    private final static String URL = "jdbc:mysql://47.93.19.130:3306/cw_tiafs?" +
             "useUnicode=true&" +
             "characterEncoding=UTF-8&" +
             "allowMultiQueries=true&" +
@@ -49,39 +50,33 @@ public class JdbcConnectionUtils {
     /**
      * 批量插入1万条用户测试数据
      ****/
-    public static void insetBatch(Connection conn, List<UserBean> userBeans) {
+    public static void insetBatch(Connection conn, List<SysUserBean> userBeans) throws SQLException {
 
         assert conn != null;
 
-        String sql = "INSERT INTO user( `name`, `code`, `sex`, `create_date`, `create_by`, `update_date`, `update_by`) " +
-                "VALUES  (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO sys_user( `id`,`name`, `email`, `sex`, `phone`,`password`,`user_name`,`created_date`, `updated_date`) " +
+                "VALUES  (?,?,?,?,?,?,?,?,?)";
 
-        try {
-            conn.setAutoCommit(false);
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            for (UserBean u : userBeans) {
-                preparedStatement.setString(1, u.getName());
-                preparedStatement.setString(2,u.getCode());
-                preparedStatement.setString(3,u.getSex());
-                preparedStatement.setDate(4,new Date(System.currentTimeMillis()));
-                preparedStatement.setLong(5,-1L);
-                preparedStatement.setDate(6,new Date(System.currentTimeMillis()));
-                preparedStatement.setLong(7,-1L);
-                preparedStatement.addBatch();
-            }
-            System.out.println("begin inserting");
-            int[] ints = preparedStatement.executeBatch();
-            conn.commit();
-            System.out.println("finish insert,row:" + ints.length);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        conn.setAutoCommit(false);
+        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+        for (SysUserBean u : userBeans) {
+            preparedStatement.setLong(1, u.getId());
+            preparedStatement.setString(2,u.getName());
+            preparedStatement.setString(3,u.getEmail());
+            preparedStatement.setString(4,u.getSex());
+            preparedStatement.setLong(5,u.getPhone());
+            preparedStatement.setString(6,u.getPassword());
+            preparedStatement.setString(7,u.getUserName());
+            preparedStatement.setDate(8,new Date(System.currentTimeMillis()));
+            preparedStatement.setDate(9,new Date(System.currentTimeMillis()));
+            preparedStatement.addBatch();
         }
+        System.out.println("begin inserting");
+        int[] ints = preparedStatement.executeBatch();
+        conn.commit();
+        System.out.println("finish insert,row:" + ints.length);
+
+
 
 
     }
