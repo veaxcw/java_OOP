@@ -1,10 +1,9 @@
 package com.chengw.jdbc;
 
 import com.chengw.jdbc.po.SysUserBean;
-import com.chengw.jdbc.po.UserBean;
 import com.chengw.jdbc.utils.DataUtils;
 import com.chengw.jdbc.utils.JdbcConnectionUtils;
-import com.chengw.utils.ListUtils.ListSplitUtils;
+import com.chengw.utils.listutils.ListUtils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,7 +18,7 @@ public class JdbcTest {
         Connection connection = JdbcConnectionUtils.getConnection();
 
         List<SysUserBean> data =  DataUtils.simulateSysUsers(200);
-        List<List<SysUserBean>> lists = ListSplitUtils.listSplit(data, 50);
+        List<List<SysUserBean>> lists = ListUtils.listSplit(data, 50);
         int start = 0;
         try {
             for(List<SysUserBean> var:lists) {

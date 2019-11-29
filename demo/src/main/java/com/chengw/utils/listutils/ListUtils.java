@@ -1,4 +1,4 @@
-package com.chengw.utils.ListUtils;
+package com.chengw.utils.listutils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author chengw
  */
-public class ListSplitUtils {
+public class ListUtils {
 
     /**
      * 将List 拆分成多个大小为size相同的List
