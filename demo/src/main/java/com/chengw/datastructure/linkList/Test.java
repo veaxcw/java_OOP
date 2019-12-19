@@ -1,4 +1,4 @@
-package com.chengw.dataStructure.linkList;
+package com.chengw.datastructure.linkList;
 
 import java.util.Random;
 import java.util.Scanner;

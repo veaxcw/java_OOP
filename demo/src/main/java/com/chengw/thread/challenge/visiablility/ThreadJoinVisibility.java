@@ -1,5 +1,6 @@
 package com.chengw.thread.challenge.visiablility;
 
+
 import com.chengw.thread.utils.Tools;
 
 /**

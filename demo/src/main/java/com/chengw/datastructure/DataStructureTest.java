@@ -1,8 +1,7 @@
-package com.chengw.dataStructure;
+package com.chengw.datastructure;
 
-import com.chengw.dataStructure.binaryTree.BinarySearchTree;
-import com.chengw.dataStructure.quene.Queue;
-import com.chengw.dataStructure.stack.Stack;
+import com.chengw.datastructure.binaryTree.BinarySearchTree;
+import com.chengw.datastructure.quene.Queue;
 
 
 import java.util.Random;

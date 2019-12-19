@@ -1,4 +1,4 @@
-package com.chengw.dataStructure.binaryTree;
+package com.chengw.datastructure.binaryTree;
 
 public abstract class BinaryTree< T extends Comparable<? super T>> implements Tree{
 

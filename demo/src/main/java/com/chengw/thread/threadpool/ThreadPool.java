@@ -1,20 +1,19 @@
 package com.chengw.thread.threadpool;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
 import java.util.concurrent.*;
 
 /**
  * 手动创建线程池
+ *
  * @author chengw
  */
 public class ThreadPool {
 
 
-    /**
-     * 任务队列
-     */
-    private static BlockingQueue workQueue = new ArrayBlockingQueue(10);
 
-    public static ThreadPoolExecutor getThreadPool(){
+    public static ThreadPoolExecutor getThreadPool() {
         /**
          * 线程池大小
          */
@@ -28,13 +27,15 @@ public class ThreadPool {
          */
         long keepAliveTime = 1;
 
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("demo-pool-%d").build();
+
+        return new ThreadPoolExecutor(
                 corePoolSize,
                 maxPoolSize,
                 keepAliveTime,
                 TimeUnit.SECONDS,
-                workQueue);
-        return executor;
+                new ArrayBlockingQueue<>(10),
+                namedThreadFactory);
     }
 
 }

@@ -1,8 +1,7 @@
-package com.chengw.dataStructure.stack;
+package com.chengw.datastructure.stack;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Queue;
 
 /**
  * @author chengw

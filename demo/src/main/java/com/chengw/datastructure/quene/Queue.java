@@ -1,4 +1,4 @@
-package com.chengw.dataStructure.quene;
+package com.chengw.datastructure.quene;
 
 import java.io.Serializable;
 

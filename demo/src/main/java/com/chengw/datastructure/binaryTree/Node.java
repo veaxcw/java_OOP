@@ -1,4 +1,4 @@
-package com.chengw.dataStructure.binaryTree;
+package com.chengw.datastructure.binaryTree;
 
 
 /**二叉树节点**/
