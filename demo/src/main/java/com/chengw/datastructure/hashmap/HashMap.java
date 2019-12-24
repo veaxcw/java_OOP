@@ -14,13 +14,12 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
- * 为了方便分析源码 将源码HashMap 全部替换成 HashMapSourceCodeAnalysis
  * hashMap 源码解析
  *
  * @author chengwei
  */
 @Deprecated
-public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
+public class HashMap<K, V> extends AbstractMap<K, V>
         implements Map<K, V>, Cloneable, Serializable {
 
     private static final long serialVersionUID = 362498820763181265L;
@@ -69,9 +68,9 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         final int hash;
         final K key;
         V value;
-        HashMapSourceCodeAnalysis.Node<K, V> next;
+        HashMap.Node<K, V> next;
 
-        Node(int hash, K key, V value, HashMapSourceCodeAnalysis.Node<K, V> next) {
+        Node(int hash, K key, V value, HashMap.Node<K, V> next) {
             this.hash = hash;
             this.key = key;
             this.value = value;
@@ -127,12 +126,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     static final int hash(Object key) {
         int h;
         // jkd 1.7
-        // 方法 h&（length - 1）
-        // 取模运算
-        // 它通过h & (table.length -1)来得到该对象的保存位，
-        // 而HashMap底层数组的长度总是2的n次方，这是HashMap在速度上的优化。
-        // 当length总是2的n次方时，h& (length-1)运算等价于对length取模，也就是h%length，但是&比%具有更高的效率。
-        // eg 7%4 = 3 等价于 7&3（111&11 = 3）
+
         // jdk 1.8 方法
         // h >>> 16 高位参与异或运算
         // (h = key.hashCode()) ^ (h >>> 16) 高位与低位做异或运算
@@ -203,7 +197,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     /**
      * 这就是那个hash 桶，实际上就是一个节点的数组
      */
-    transient HashMapSourceCodeAnalysis.Node<K, V>[] table;
+    transient HashMap.Node<K, V>[] table;
 
     /**
      * 缓存 hashMap 中的所有条目
@@ -245,7 +239,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
      * @param loadFactor      负载因子
      * @throws IllegalArgumentException 如果初始容量为负数或者负载因子小于等于0 则抛异常
      */
-    public HashMapSourceCodeAnalysis(int initialCapacity, float loadFactor) {
+    public HashMap(int initialCapacity, float loadFactor) {
         if (initialCapacity < 0) {
             throw new IllegalArgumentException("Illegal initial capacity: " +
                     initialCapacity);
@@ -268,7 +262,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
      * @param initialCapacity 初始容量
      * @throws IllegalArgumentException 如果初始容量为负数 则抛异常
      */
-    public HashMapSourceCodeAnalysis(int initialCapacity) {
+    public HashMap(int initialCapacity) {
         this(initialCapacity, DEFAULT_LOAD_FACTOR);
     }
 
@@ -277,8 +271,8 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
      * 默认容量 为16
      * 默认负载因子 为0.75
      */
-    public HashMapSourceCodeAnalysis() {
-        this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted
+    public HashMap() {
+        this.loadFactor = DEFAULT_LOAD_FACTOR;
     }
 
     /**
@@ -289,7 +283,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
      * @param m 指定的map
      * @throws NullPointerException 如果map 为空则抛空指针异常
      */
-    public HashMapSourceCodeAnalysis(Map<? extends K, ? extends V> m) {
+    public HashMap(Map<? extends K, ? extends V> m) {
         this.loadFactor = DEFAULT_LOAD_FACTOR;
         putMapEntries(m, false);
     }
@@ -350,7 +344,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
      */
     @Override
     public V get(Object key) {
-        HashMapSourceCodeAnalysis.Node<K, V> e;
+        HashMap.Node<K, V> e;
         return (e = getNode(hash(key), key)) == null ? null : e.value;
     }
 
@@ -361,11 +355,11 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
      * @param key  key
      * @return 返回该节点
      */
-    final HashMapSourceCodeAnalysis.Node<K, V> getNode(int hash, Object key) {
+    final HashMap.Node<K, V> getNode(int hash, Object key) {
         // 那个桶
-        HashMapSourceCodeAnalysis.Node<K, V>[] tab;
+        HashMap.Node<K, V>[] tab;
         //  第一个节点 和一个临时变量
-        HashMapSourceCodeAnalysis.Node<K, V> first, e;
+        HashMap.Node<K, V> first, e;
         // 桶的大小  c
         int n;
         // key
@@ -382,8 +376,8 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             }
             // 若不是第一个 则遍历链表或者树 找到为止
             if ((e = first.next) != null) {
-                if (first instanceof HashMapSourceCodeAnalysis.TreeNode) {
-                    return ((HashMapSourceCodeAnalysis.TreeNode<K, V>) first).getTreeNode(hash, key);
+                if (first instanceof HashMap.TreeNode) {
+                    return ((HashMap.TreeNode<K, V>) first).getTreeNode(hash, key);
                 }
                 do {
                     if (e.hash == hash &&
@@ -421,6 +415,13 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     /**
      * put 方法的具体实现
      *
+     *  方法 hash &（length - 1）
+     * 取模运算
+     * 它通过h & (table.length -1)来得到该对象的保存位，
+     * 而HashMap底层数组的长度总是2的n次方，这是HashMap在速度上的优化。
+     * 当length总是2的n次方时，h& (length-1)运算等价于对length取模，也就是h%length，但是&比%具有更高的效率。
+     * eg 7%4 = 3 等价于 7&3（111 & 011 = 3）
+     *
      * @param hash         hash for key
      * @param key          the key
      * @param value        the value to put
@@ -431,8 +432,8 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
         // 老套路 一堆临时变量
-        HashMapSourceCodeAnalysis.Node<K, V>[] tab;
-        HashMapSourceCodeAnalysis.Node<K, V> p;
+        HashMap.Node<K, V>[] tab;
+        HashMap.Node<K, V> p;
         int n, i;
         // 哈希桶为空则重新整一个
         if ((tab = table) == null || (n = tab.length) == 0) {
@@ -444,12 +445,12 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             tab[i] = newNode(hash, key, value, null);
         } else {
             // 该坑位有人 首先判断 key 是否相同 相同则覆盖该节点
-            HashMapSourceCodeAnalysis.Node<K, V> e;
+            HashMap.Node<K, V> e;
             K k;
             if (p.hash == hash &&
                     ((k = p.key) == key || (key != null && key.equals(k)))) {
                 e = p;
-            } else if (p instanceof HashMapSourceCodeAnalysis.TreeNode) {
+            } else if (p instanceof HashMap.TreeNode) {
                 // 如果是树节点 则按树节点往后插入值
                 e = ((TreeNode<K, V>) p).putTreeVal(this, tab, hash, key, value);
             } else {
@@ -497,27 +498,36 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     }
 
     /**
-     * 扩容 todo 再解释
+     * 扩容机制
+     *
+     * 当 键值对的数量 大于 阈值（负载因子 * hash桶的容量）
+     *
+     * 比如 hash桶的大小 为100 负载因子为0。75 当插入第76个节点时 会触发扩容
      *
      * @return the table
      */
-    final HashMapSourceCodeAnalysis.Node<K, V>[] resize() {
-        HashMapSourceCodeAnalysis.Node<K, V>[] oldTab = table;
+    final HashMap.Node<K, V>[] resize() {
+        // 获取旧的哈希桶及其阈值
+        HashMap.Node<K, V>[] oldTab = table;
         int oldCap = (oldTab == null) ? 0 : oldTab.length;
         int oldThr = threshold;
         int newCap, newThr = 0;
         if (oldCap > 0) {
             if (oldCap >= MAXIMUM_CAPACITY) {
+                // 旧哈希桶的大小 大于 最大容量则直接返回
                 threshold = Integer.MAX_VALUE;
                 return oldTab;
             } else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
                     oldCap >= DEFAULT_INITIAL_CAPACITY) {
-                newThr = oldThr << 1; // double threshold
+                // 新的容量 为旧的容量的两倍
+                // 新的阈值 为旧的阈值的两倍
+                newThr = oldThr << 1;
             }
         } else if (oldThr > 0) // initial capacity was placed in threshold
         {
             newCap = oldThr;
-        } else {               // zero initial threshold signifies using defaults
+        } else {
+            // 取容量和阈值的初始值
             newCap = DEFAULT_INITIAL_CAPACITY;
             newThr = (int) (DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
         }
@@ -526,33 +536,78 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             newThr = (newCap < MAXIMUM_CAPACITY && ft < (float) MAXIMUM_CAPACITY ?
                     (int) ft : Integer.MAX_VALUE);
         }
+        // 构建新的哈希桶
         threshold = newThr;
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        HashMapSourceCodeAnalysis.Node<K, V>[] newTab = (HashMapSourceCodeAnalysis.Node<K, V>[]) new HashMapSourceCodeAnalysis.Node[newCap];
+        HashMap.Node<K, V>[] newTab = (HashMap.Node<K, V>[]) new HashMap.Node[newCap];
         table = newTab;
         if (oldTab != null) {
+            // 遍历旧的hashmap
             for (int j = 0; j < oldCap; ++j) {
-                HashMapSourceCodeAnalysis.Node<K, V> e;
+                HashMap.Node<K, V> e;
                 if ((e = oldTab[j]) != null) {
+                    // 释放内存
                     oldTab[j] = null;
                     if (e.next == null) {
+                        // 将e 放到他该放的地方
                         newTab[e.hash & (newCap - 1)] = e;
-                    } else if (e instanceof HashMapSourceCodeAnalysis.TreeNode) {
+                    } else if (e instanceof HashMap.TreeNode) {
+                        // 红黑树的复制
                         ((TreeNode<K, V>) e).split(this, newTab, j, oldCap);
-                    } else { // preserve order
-                        HashMapSourceCodeAnalysis.Node<K, V> loHead = null, loTail = null;
-                        HashMapSourceCodeAnalysis.Node<K, V> hiHead = null, hiTail = null;
-                        HashMapSourceCodeAnalysis.Node<K, V> next;
+                    } else {
+                        // 链表的复制
+                        // 方法比较特殊： 它并没有重新计算元素在数组中的位置
+                        // 而是采用了 原始位置加原数组长度的方法计算得到位置
+
+                        // 复制节点位置没发生变化的链表
+                        HashMap.Node<K, V> loHead = null, loTail = null;
+                        // 复制节点位置发生变化的链表
+                        HashMap.Node<K, V> hiHead = null, hiTail = null;
+                        HashMap.Node<K, V> next;
                         do {
+                            /*********************************************/
+                            /**
+                             * 注: e本身就是一个链表的节点，它有 自身的值和next(链表的值)，但是因为next值对节点扩容没有帮助，
+                             */
+                            /*********************************************/
                             next = e.next;
+                            /*********************************************/
+
+                            /** 注意：不是(e.hash & (oldCap-1));而是(e.hash & oldCap)
+                             (e.hash & oldCap) 得到的是 元素的在数组中的位置是否需要移动,示例如下
+                             示例1：
+                             e.hash = 10 0000 1010
+                             oldCap = 16 0001 0000
+                            	 &   = 0	 0000 0000       比较高位的第一位 0
+                             旧的位置 0000 1010 & 0000 1111 = 1010
+                             新的位置 0000 1010 & 0001 1111 = 1010
+                            结论：元素位置在扩容后数组中的位置没有发生改变
+
+                             示例2：
+                             e.hash = 17 0001 0001
+                             oldCap = 16 0001 0000
+                            	 &  = 1	 0001 0000      比较高位的第一位   1
+                             旧的位置：0001 0001 & 0000 1111 = 1
+                             新的位置：0001 0001 & 0001 1111 = 0001 0001 = 17 = 1 + 16 （原数组位置 + 数组长度）
+                            //结论：元素位置在扩容后数组中的位置发生了改变，新的下标位置是原下标位置+原数组长度
+
+                            //参考博文：[Java 1.8中HashMap的resize()方法扩容部分的理解](https://blog.csdn.net/u013494765/article/details/77837338)
+                            // 0000 0001->0001 0001
+                            /*********************************************/
+                            // 复制链表
                             if ((e.hash & oldCap) == 0) {
+                                // 如果元素的位置没有发生变化
                                 if (loTail == null) {
+                                    // 第一次 循环 确认 头节点的为止
                                     loHead = e;
                                 } else {
                                     loTail.next = e;
                                 }
+                                // 第一次进来 loHead=loTail=e
+                                // 第二次进来 loHead=e loTail = e.next
                                 loTail = e;
                             } else {
+                                // 如果元素的位置 发生了变化
+                                // 将链表复制到hi
                                 if (hiTail == null) {
                                     hiHead = e;
                                 } else {
@@ -561,10 +616,12 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                                 hiTail = e;
                             }
                         } while ((e = next) != null);
+                        // 将元素位置未发生变化的链表头节点 置于新哈希桶的相同位置
                         if (loTail != null) {
                             loTail.next = null;
                             newTab[j] = loHead;
                         }
+                        // 将元素位置发生变化了的链表头节点 置于新哈希桶的指定位置（原位置 + 旧哈希桶的容量）
                         if (hiTail != null) {
                             hiTail.next = null;
                             newTab[j + oldCap] = hiHead;
@@ -579,17 +636,25 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     /**
      * 将桶中指定位置的链表转换成红黑树
      * 桶太小 则扩容
-     * todo 具体实现 分析
      */
-    final void treeifyBin(HashMapSourceCodeAnalysis.Node<K, V>[] tab, int hash) {
+    final void treeifyBin(HashMap.Node<K, V>[] tab, int hash) {
         int n, index;
-        HashMapSourceCodeAnalysis.Node<K, V> e;
+        HashMap.Node<K, V> e;
         if (tab == null || (n = tab.length) < MIN_TREEIFY_CAPACITY) {
+            // 哈希桶的大小小于64 则触发扩容
             resize();
         } else if ((e = tab[index = (n - 1) & hash]) != null) {
-            HashMapSourceCodeAnalysis.TreeNode<K, V> hd = null, tl = null;
+            // index =（n -1）& hash 计算桶中的位置
+            // hd 头节点 tl 尾节点
+            HashMap.TreeNode<K, V> hd = null, tl = null;
+            // 循环遍历链表，转换成双向链表
             do {
-                HashMapSourceCodeAnalysis.TreeNode<K, V> p = replacementTreeNode(e, null);
+                // 链表节点转换成树节点
+                // 为方便理解 p[n] 指原链表中第n个节点，
+                // 首次进入循环 hd = tl = p[0]
+                // 第二次进入 p[1].pre = p[0] p[0].next = p[1] tl = p[1]
+                // 以此类推 构建一个双向链表
+                HashMap.TreeNode<K, V> p = replacementTreeNode(e, null);
                 if (tl == null) {
                     hd = p;
                 } else {
@@ -599,6 +664,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                 tl = p;
             } while ((e = e.next) != null);
             if ((tab[index] = hd) != null) {
+                // 双向链表转成红黑树
                 hd.treeify(tab);
             }
         }
@@ -623,38 +689,44 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
      */
     @Override
     public V remove(Object key) {
-        HashMapSourceCodeAnalysis.Node<K, V> e;
+        HashMap.Node<K, V> e;
         return (e = removeNode(hash(key), key, null, false, true)) == null ?
                 null : e.value;
     }
 
     /**
-     * 实现 删除放方法 todo
+     * 实现 删除放方法
      *
-     * @param hash       hash for key
-     * @param key        the key
-     * @param value      the value to match if matchValue, else ignored
-     * @param matchValue if true only remove if value is equal
-     * @param movable    if false do not move other nodes while removing
-     * @return the node, or null if none
+     * @param hash       key 的hash值
+     * @param key        key
+     * @param value
+     * @param matchValue 为true 则仅删除值相等的键值对
+     * @param movable    if false do not move other nodes while removing 为false 则不移动其他节点
+     * @return the node,
      */
-    final HashMapSourceCodeAnalysis.Node<K, V> removeNode(int hash, Object key, Object value,
+    final HashMap.Node<K, V> removeNode(int hash, Object key, Object value,
                                                           boolean matchValue, boolean movable) {
-        HashMapSourceCodeAnalysis.Node<K, V>[] tab;
-        HashMapSourceCodeAnalysis.Node<K, V> p;
+        HashMap.Node<K, V>[] tab;
+        // 需要删除节点的pre节点（如果需要删除的节点是头节点，p = node）
+        // p = node.pre
+        HashMap.Node<K, V> p;
         int n, index;
+        // 第一个条件：哈希桶不是空 而且 （index = （n -1）& hash） 位置的节点不为空
         if ((tab = table) != null && (n = tab.length) > 0 &&
                 (p = tab[index = (n - 1) & hash]) != null) {
-            HashMapSourceCodeAnalysis.Node<K, V> node = null, e;
+            HashMap.Node<K, V> node = null, e;
             K k;
             V v;
+            // 找到匹配的节点: 1,hash 值相同，2，key 相同（引用相同，或者 .equals 结果为ture）
             if (p.hash == hash &&
                     ((k = p.key) == key || (key != null && key.equals(k)))) {
                 node = p;
             } else if ((e = p.next) != null) {
-                if (p instanceof HashMapSourceCodeAnalysis.TreeNode) {
+                if (p instanceof HashMap.TreeNode) {
+                    // 如果是树节点 则调用树节点的方法找到节点
                     node = ((TreeNode<K, V>) p).getTreeNode(hash, key);
                 } else {
+                    // 遍历链表直到找到即诶单
                     do {
                         if (e.hash == hash &&
                                 ((k = e.key) == key ||
@@ -666,17 +738,23 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                     } while ((e = e.next) != null);
                 }
             }
+            // 删除节点 条件:1,节点不为空，2 （若需要匹配节点value 则 匹配value）
             if (node != null && (!matchValue || (v = node.value) == value ||
                     (value != null && value.equals(v)))) {
-                if (node instanceof HashMapSourceCodeAnalysis.TreeNode) {
+                if (node instanceof HashMap.TreeNode) {
+                    // 节点为树节点 则按照 树节点的方式 删除即诶单
                     ((TreeNode<K, V>) node).removeTreeNode(this, tab, movable);
                 } else if (node == p) {
+                    // 如果删除的节点 是头节点 直接 原节点的位置 指向node.next
                     tab[index] = node.next;
                 } else {
+                    // 如果不是 直接 执行 删除链表节点的方法
                     p.next = node.next;
                 }
+                // 结构改变 + 1，size 见 1
                 ++modCount;
                 --size;
+                // 后处理
                 afterNodeRemoval(node);
                 return node;
             }
@@ -689,7 +767,9 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
      */
     @Override
     public void clear() {
-        HashMapSourceCodeAnalysis.Node<K, V>[] tab;
+
+        // 哈希桶所有坑位置空，让gc 回收
+        HashMap.Node<K, V>[] tab;
         modCount++;
         if ((tab = table) != null && size > 0) {
             size = 0;
@@ -704,11 +784,11 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
      */
     @Override
     public boolean containsValue(Object value) {
-        HashMapSourceCodeAnalysis.Node<K, V>[] tab;
+        HashMap.Node<K, V>[] tab;
         V v;
         if ((tab = table) != null && size > 0) {
             for (int i = 0; i < tab.length; ++i) {
-                for (HashMapSourceCodeAnalysis.Node<K, V> e = tab[i]; e != null; e = e.next) {
+                for (HashMap.Node<K, V> e = tab[i]; e != null; e = e.next) {
                     if ((v = e.value) == value ||
                             (value != null && value.equals(v))) {
                         return true;
@@ -728,7 +808,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     public Set<K> keySet() {
         Set<K> ks = keySet;
         if (ks == null) {
-            ks = new HashMapSourceCodeAnalysis.KeySet();
+            ks = new HashMap.KeySet();
             keySet = ks;
 
         }
@@ -743,11 +823,11 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
         @Override
         public final void clear() {
-            HashMapSourceCodeAnalysis.this.clear();
+            HashMap.this.clear();
         }
         @Override
         public final Iterator<K> iterator() {
-            return new HashMapSourceCodeAnalysis.KeyIterator();
+            return new HashMap.KeyIterator();
         }
 
         @Override
@@ -762,19 +842,19 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
         @Override
         public final Spliterator<K> spliterator() {
-            return new HashMapSourceCodeAnalysis.KeySpliterator<>(HashMapSourceCodeAnalysis.this, 0, -1, 0, 0);
+            return new HashMap.KeySpliterator<>(HashMap.this, 0, -1, 0, 0);
         }
 
         @Override
         public final void forEach(Consumer<? super K> action) {
-            HashMapSourceCodeAnalysis.Node<K, V>[] tab;
+            HashMap.Node<K, V>[] tab;
             if (action == null) {
                 throw new NullPointerException();
             }
             if (size > 0 && (tab = table) != null) {
                 int mc = modCount;
                 for (int i = 0; i < tab.length; ++i) {
-                    for (HashMapSourceCodeAnalysis.Node<K, V> e = tab[i]; e != null; e = e.next) {
+                    for (HashMap.Node<K, V> e = tab[i]; e != null; e = e.next) {
                         action.accept(e.key);
                     }
                 }
@@ -793,7 +873,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     public Collection<V> values() {
         Collection<V> vs = values;
         if (vs == null) {
-            vs = new HashMapSourceCodeAnalysis.Values();
+            vs = new HashMap.Values();
             values = vs;
         }
         return vs;
@@ -807,12 +887,12 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
         @Override
         public final void clear() {
-            HashMapSourceCodeAnalysis.this.clear();
+            HashMap.this.clear();
         }
 
         @Override
         public final Iterator<Object> iterator() {
-            return new HashMapSourceCodeAnalysis.ValueIterator();
+            return new HashMap.ValueIterator();
         }
 
         public final boolean contains(Object o) {
@@ -821,19 +901,19 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
         @Override
         public final Spliterator<Object> spliterator() {
-            return new ValueSpliterator<Object, Object>(HashMapSourceCodeAnalysis.this, 0, -1, 0, 0);
+            return new ValueSpliterator<Object, Object>(HashMap.this, 0, -1, 0, 0);
         }
 
         @Override
         public final void forEach(Consumer<? super Object> action) {
-            HashMapSourceCodeAnalysis.Node<K, V>[] tab;
+            HashMap.Node<K, V>[] tab;
             if (action == null) {
                 throw new NullPointerException();
             }
             if (size > 0 && (tab = table) != null) {
                 int mc = modCount;
                 for (int i = 0; i < tab.length; ++i) {
-                    for (HashMapSourceCodeAnalysis.Node<K, V> e = tab[i]; e != null; e = e.next) {
+                    for (HashMap.Node<K, V> e = tab[i]; e != null; e = e.next) {
                         action.accept(e.value);
                     }
                 }
@@ -852,7 +932,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     @Override
     public Set<Map.Entry<K, V>> entrySet() {
         Set<Map.Entry<K, V>> es;
-        return (es = entrySet) == null ? (entrySet = new HashMapSourceCodeAnalysis.EntrySet()) : es;
+        return (es = entrySet) == null ? (entrySet = new HashMap.EntrySet()) : es;
     }
 
     final class EntrySet extends AbstractSet<Map.Entry<K, V>> {
@@ -863,12 +943,12 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
         @Override
         public final void clear() {
-            HashMapSourceCodeAnalysis.this.clear();
+            HashMap.this.clear();
         }
 
         @Override
         public final Iterator<Map.Entry<K, V>> iterator() {
-            return new HashMapSourceCodeAnalysis.EntryIterator();
+            return new HashMap.EntryIterator();
         }
 
         @Override
@@ -878,7 +958,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             }
             Map.Entry<?, ?> e = (Map.Entry<?, ?>) o;
             Object key = e.getKey();
-            HashMapSourceCodeAnalysis.Node<K, V> candidate = getNode(hash(key), key);
+            HashMap.Node<K, V> candidate = getNode(hash(key), key);
             return candidate != null && candidate.equals(e);
         }
 
@@ -895,19 +975,19 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
         @Override
         public final Spliterator<Map.Entry<K, V>> spliterator() {
-            return new HashMapSourceCodeAnalysis.EntrySpliterator<>(this, 0, -1, 0, 0);
+            return new HashMap.EntrySpliterator<>(this, 0, -1, 0, 0);
         }
 
         @Override
         public final void forEach(Consumer<? super Map.Entry<K, V>> action) {
-            HashMapSourceCodeAnalysis.Node<K, V>[] tab;
+            HashMap.Node<K, V>[] tab;
             if (action == null) {
                 throw new NullPointerException();
             }
             if (size > 0 && (tab = table) != null) {
                 int mc = modCount;
                 for (int i = 0; i < tab.length; ++i) {
-                    for (HashMapSourceCodeAnalysis.Node<K, V> e = tab[i]; e != null; e = e.next) {
+                    for (HashMap.Node<K, V> e = tab[i]; e != null; e = e.next) {
                         action.accept(e);
                     }
                 }
@@ -922,7 +1002,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
     @Override
     public V getOrDefault(Object key, V defaultValue) {
-        HashMapSourceCodeAnalysis.Node<K, V> e;
+        HashMap.Node<K, V> e;
         return (e = getNode(hash(key), key)) == null ? defaultValue : e.value;
     }
 
@@ -938,7 +1018,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
     @Override
     public boolean replace(K key, V oldValue, V newValue) {
-        HashMapSourceCodeAnalysis.Node<K, V> e;
+        HashMap.Node<K, V> e;
         V v;
         if ((e = getNode(hash(key), key)) != null &&
                 ((v = e.value) == oldValue || (v != null && v.equals(oldValue)))) {
@@ -951,7 +1031,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
     @Override
     public V replace(K key, V value) {
-        HashMapSourceCodeAnalysis.Node<K, V> e;
+        HashMap.Node<K, V> e;
         if ((e = getNode(hash(key), key)) != null) {
             V oldValue = e.value;
             e.value = value;
@@ -968,21 +1048,21 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             throw new NullPointerException();
         }
         int hash = hash(key);
-        HashMapSourceCodeAnalysis.Node<K, V>[] tab;
-        HashMapSourceCodeAnalysis.Node<K, V> first;
+        HashMap.Node<K, V>[] tab;
+        HashMap.Node<K, V> first;
         int n, i;
         int binCount = 0;
-        HashMapSourceCodeAnalysis.TreeNode<K, V> t = null;
-        HashMapSourceCodeAnalysis.Node<K, V> old = null;
+        HashMap.TreeNode<K, V> t = null;
+        HashMap.Node<K, V> old = null;
         if (size > threshold || (tab = table) == null ||
                 (n = tab.length) == 0) {
             n = (tab = resize()).length;
         }
         if ((first = tab[i = (n - 1) & hash]) != null) {
-            if (first instanceof HashMapSourceCodeAnalysis.TreeNode) {
+            if (first instanceof HashMap.TreeNode) {
                 old = (t = (TreeNode<K, V>) first).getTreeNode(hash, key);
             } else {
-                HashMapSourceCodeAnalysis.Node<K, V> e = first;
+                HashMap.Node<K, V> e = first;
                 K k;
                 do {
                     if (e.hash == hash &&
@@ -1026,7 +1106,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         if (remappingFunction == null) {
             throw new NullPointerException();
         }
-        HashMapSourceCodeAnalysis.Node<K, V> e;
+        HashMap.Node<K, V> e;
         V oldValue;
         int hash = hash(key);
         if ((e = getNode(hash, key)) != null &&
@@ -1049,21 +1129,21 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         if (remappingFunction == null)
             throw new NullPointerException();
         int hash = hash(key);
-        HashMapSourceCodeAnalysis.Node<K, V>[] tab;
-        HashMapSourceCodeAnalysis.Node<K, V> first;
+        HashMap.Node<K, V>[] tab;
+        HashMap.Node<K, V> first;
         int n, i;
         int binCount = 0;
-        HashMapSourceCodeAnalysis.TreeNode<K, V> t = null;
-        HashMapSourceCodeAnalysis.Node<K, V> old = null;
+        HashMap.TreeNode<K, V> t = null;
+        HashMap.Node<K, V> old = null;
         if (size > threshold || (tab = table) == null ||
                 (n = tab.length) == 0) {
             n = (tab = resize()).length;
         }
         if ((first = tab[i = (n - 1) & hash]) != null) {
-            if (first instanceof HashMapSourceCodeAnalysis.TreeNode) {
+            if (first instanceof HashMap.TreeNode) {
                 old = (t = (TreeNode<K, V>) first).getTreeNode(hash, key);
             } else {
-                HashMapSourceCodeAnalysis.Node<K, V> e = first;
+                HashMap.Node<K, V> e = first;
                 K k;
                 do {
                     if (e.hash == hash &&
@@ -1110,21 +1190,21 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             throw new NullPointerException();
         }
         int hash = hash(key);
-        HashMapSourceCodeAnalysis.Node<K, V>[] tab;
-        HashMapSourceCodeAnalysis.Node<K, V> first;
+        HashMap.Node<K, V>[] tab;
+        HashMap.Node<K, V> first;
         int n, i;
         int binCount = 0;
-        HashMapSourceCodeAnalysis.TreeNode<K, V> t = null;
-        HashMapSourceCodeAnalysis.Node<K, V> old = null;
+        HashMap.TreeNode<K, V> t = null;
+        HashMap.Node<K, V> old = null;
         if (size > threshold || (tab = table) == null ||
                 (n = tab.length) == 0) {
             n = (tab = resize()).length;
         }
         if ((first = tab[i = (n - 1) & hash]) != null) {
-            if (first instanceof HashMapSourceCodeAnalysis.TreeNode) {
-                old = (t = (HashMapSourceCodeAnalysis.TreeNode<K, V>) first).getTreeNode(hash, key);
+            if (first instanceof HashMap.TreeNode) {
+                old = (t = (HashMap.TreeNode<K, V>) first).getTreeNode(hash, key);
             } else {
-                HashMapSourceCodeAnalysis.Node<K, V> e = first;
+                HashMap.Node<K, V> e = first;
                 K k;
                 do {
                     if (e.hash == hash &&
@@ -1169,14 +1249,14 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
     @Override
     public void forEach(BiConsumer<? super K, ? super V> action) {
-        HashMapSourceCodeAnalysis.Node<K, V>[] tab;
+        HashMap.Node<K, V>[] tab;
         if (action == null) {
             throw new NullPointerException();
         }
         if (size > 0 && (tab = table) != null) {
             int mc = modCount;
             for (int i = 0; i < tab.length; ++i) {
-                for (HashMapSourceCodeAnalysis.Node<K, V> e = tab[i]; e != null; e = e.next) {
+                for (HashMap.Node<K, V> e = tab[i]; e != null; e = e.next) {
                     action.accept(e.key, e.value);
                 }
             }
@@ -1188,14 +1268,14 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
     @Override
     public void replaceAll(BiFunction<? super K, ? super V, ? extends V> function) {
-        HashMapSourceCodeAnalysis.Node<K, V>[] tab;
+        HashMap.Node<K, V>[] tab;
         if (function == null) {
             throw new NullPointerException();
         }
         if (size > 0 && (tab = table) != null) {
             int mc = modCount;
             for (int i = 0; i < tab.length; ++i) {
-                for (HashMapSourceCodeAnalysis.Node<K, V> e = tab[i]; e != null; e = e.next) {
+                for (HashMap.Node<K, V> e = tab[i]; e != null; e = e.next) {
                     e.value = function.apply(e.key, e.value);
                 }
             }
@@ -1217,9 +1297,9 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     @SuppressWarnings("unchecked")
     @Override
     public Object clone() {
-        HashMapSourceCodeAnalysis<K,V> result;
+        HashMap<K,V> result;
         try {
-            result = (HashMapSourceCodeAnalysis<K,V>) super.clone();
+            result = (HashMap<K,V>) super.clone();
         } catch (CloneNotSupportedException e) {
             // this shouldn't happen, since we are Cloneable
             throw new InternalError(e);
@@ -1301,7 +1381,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             // what we're actually creating.
             SharedSecrets.getJavaOISAccess().checkArray(s, Map.Entry[].class, cap);
             @SuppressWarnings({"rawtypes", "unchecked"})
-            HashMapSourceCodeAnalysis.Node<K, V>[] tab = (HashMapSourceCodeAnalysis.Node<K, V>[]) new HashMapSourceCodeAnalysis.Node[cap];
+            HashMap.Node<K, V>[] tab = (HashMap.Node<K, V>[]) new HashMap.Node[cap];
             table = tab;
 
             // Read the keys and values, and put the mappings in the HashMap
@@ -1319,14 +1399,14 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     // iterators
 
     abstract class HashIterator {
-        HashMapSourceCodeAnalysis.Node<K, V> next;        // next entry to return
-        HashMapSourceCodeAnalysis.Node<K, V> current;     // current entry
+        HashMap.Node<K, V> next;        // next entry to return
+        HashMap.Node<K, V> current;     // current entry
         int expectedModCount;  // for fast-fail
         int index;             // current slot
 
         HashIterator() {
             expectedModCount = modCount;
-            HashMapSourceCodeAnalysis.Node<K, V>[] t = table;
+            HashMap.Node<K, V>[] t = table;
             current = next = null;
             index = 0;
             if (t != null && size > 0) { // advance to first entry
@@ -1339,9 +1419,9 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             return next != null;
         }
 
-        final HashMapSourceCodeAnalysis.Node<K, V> nextNode() {
-            HashMapSourceCodeAnalysis.Node<K, V>[] t;
-            HashMapSourceCodeAnalysis.Node<K, V> e = next;
+        final HashMap.Node<K, V> nextNode() {
+            HashMap.Node<K, V>[] t;
+            HashMap.Node<K, V> e = next;
             if (modCount != expectedModCount) {
                 throw new ConcurrentModificationException();
             }
@@ -1356,7 +1436,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         }
 
         public final void remove() {
-            HashMapSourceCodeAnalysis.Node<K, V> p = current;
+            HashMap.Node<K, V> p = current;
             if (p == null) {
                 throw new IllegalStateException();
             }
@@ -1370,7 +1450,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         }
     }
 
-    final class KeyIterator extends HashMapSourceCodeAnalysis.HashIterator
+    final class KeyIterator extends HashMap.HashIterator
             implements Iterator<K> {
         @Override
         public final K next() {
@@ -1378,7 +1458,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         }
     }
 
-    final class ValueIterator extends HashMapSourceCodeAnalysis.HashIterator
+    final class ValueIterator extends HashMap.HashIterator
             implements Iterator<V> {
         @Override
         public final V next() {
@@ -1386,7 +1466,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         }
     }
 
-    final class EntryIterator extends HashMapSourceCodeAnalysis.HashIterator
+    final class EntryIterator extends HashMap.HashIterator
             implements Iterator<Map.Entry<K, V>> {
         @Override
         public final Map.Entry<K, V> next() {
@@ -1398,14 +1478,14 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     // spliterators
 
     static class HashMapSpliterator<K, V> {
-        final HashMapSourceCodeAnalysis<K,V> map;
-        HashMapSourceCodeAnalysis.Node<K, V> current;          // current node
+        final HashMap<K,V> map;
+        HashMap.Node<K, V> current;          // current node
         int index;                  // current index, modified on advance/split
         int fence;                  // one past last index
         int est;                    // size estimate
         int expectedModCount;       // for comodification checks
 
-        HashMapSpliterator(HashMapSourceCodeAnalysis<K,V> m, int origin,
+        HashMapSpliterator(HashMap<K,V> m, int origin,
                            int fence, int est,
                            int expectedModCount) {
             this.map = m;
@@ -1418,10 +1498,10 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         final int getFence() { // initialize fence and size on first use
             int hi;
             if ((hi = fence) < 0) {
-                HashMapSourceCodeAnalysis<K,V> m = map;
+                HashMap<K,V> m = map;
                 est = m.size;
                 expectedModCount = m.modCount;
-                HashMapSourceCodeAnalysis.Node<K, V>[] tab = m.table;
+                HashMap.Node<K, V>[] tab = m.table;
                 hi = fence = (tab == null) ? 0 : tab.length;
             }
             return hi;
@@ -1434,17 +1514,17 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     }
 
     static final class KeySpliterator<K, V>
-            extends HashMapSourceCodeAnalysis.HashMapSpliterator<K, V>
+            extends HashMap.HashMapSpliterator<K, V>
             implements Spliterator<K> {
-        KeySpliterator(HashMapSourceCodeAnalysis<K,V> m, int origin, int fence, int est,
+        KeySpliterator(HashMap<K,V> m, int origin, int fence, int est,
                        int expectedModCount) {
             super(m, origin, fence, est, expectedModCount);
         }
 
-        public HashMapSourceCodeAnalysis.KeySpliterator<K, V> trySplit() {
+        public HashMap.KeySpliterator<K, V> trySplit() {
             int hi = getFence(), lo = index, mid = (lo + hi) >>> 1;
             return (lo >= mid || current != null) ? null :
-                    new HashMapSourceCodeAnalysis.KeySpliterator<>(map, lo, index = mid, est >>>= 1,
+                    new HashMap.KeySpliterator<>(map, lo, index = mid, est >>>= 1,
                             expectedModCount);
         }
 
@@ -1454,8 +1534,8 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             if (action == null) {
                 throw new NullPointerException();
             }
-            HashMapSourceCodeAnalysis<K,V> m = map;
-            HashMapSourceCodeAnalysis.Node<K, V>[] tab = m.table;
+            HashMap<K,V> m = map;
+            HashMap.Node<K, V>[] tab = m.table;
             if ((hi = fence) < 0) {
                 mc = expectedModCount = m.modCount;
                 hi = fence = (tab == null) ? 0 : tab.length;
@@ -1464,7 +1544,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             }
             if (tab != null && tab.length >= hi &&
                     (i = index) >= 0 && (i < (index = hi) || current != null)) {
-                HashMapSourceCodeAnalysis.Node<K, V> p = current;
+                HashMap.Node<K, V> p = current;
                 current = null;
                 do {
                     if (p == null) {
@@ -1486,7 +1566,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             if (action == null) {
                 throw new NullPointerException();
             }
-            HashMapSourceCodeAnalysis.Node<K, V>[] tab = map.table;
+            HashMap.Node<K, V>[] tab = map.table;
             if (tab != null && tab.length >= (hi = getFence()) && index >= 0) {
                 while (current != null || index < hi) {
                     if (current == null) {
@@ -1513,18 +1593,18 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     }
 
     static final class ValueSpliterator<K, V>
-            extends HashMapSourceCodeAnalysis.HashMapSpliterator<K, V>
+            extends HashMap.HashMapSpliterator<K, V>
             implements Spliterator<V> {
-        ValueSpliterator(HashMapSourceCodeAnalysis<K,V> m, int origin, int fence, int est,
+        ValueSpliterator(HashMap<K,V> m, int origin, int fence, int est,
                          int expectedModCount) {
             super(m, origin, fence, est, expectedModCount);
         }
 
         @Override
-        public HashMapSourceCodeAnalysis.ValueSpliterator<K, V> trySplit() {
+        public HashMap.ValueSpliterator<K, V> trySplit() {
             int hi = getFence(), lo = index, mid = (lo + hi) >>> 1;
             return (lo >= mid || current != null) ? null :
-                    new HashMapSourceCodeAnalysis.ValueSpliterator<>(map, lo, index = mid, est >>>= 1,
+                    new HashMap.ValueSpliterator<>(map, lo, index = mid, est >>>= 1,
                             expectedModCount);
         }
 
@@ -1534,8 +1614,8 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             if (action == null) {
                 throw new NullPointerException();
             }
-            HashMapSourceCodeAnalysis<K,V> m = map;
-            HashMapSourceCodeAnalysis.Node<K, V>[] tab = m.table;
+            HashMap<K,V> m = map;
+            HashMap.Node<K, V>[] tab = m.table;
             if ((hi = fence) < 0) {
                 mc = expectedModCount = m.modCount;
                 hi = fence = (tab == null) ? 0 : tab.length;
@@ -1544,7 +1624,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             }
             if (tab != null && tab.length >= hi &&
                     (i = index) >= 0 && (i < (index = hi) || current != null)) {
-                HashMapSourceCodeAnalysis.Node<K, V> p = current;
+                HashMap.Node<K, V> p = current;
                 current = null;
                 do {
                     if (p == null) {
@@ -1566,7 +1646,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             if (action == null) {
                 throw new NullPointerException();
             }
-            HashMapSourceCodeAnalysis.Node<K, V>[] tab = map.table;
+            HashMap.Node<K, V>[] tab = map.table;
             if (tab != null && tab.length >= (hi = getFence()) && index >= 0) {
                 while (current != null || index < hi) {
                     if (current == null) {
@@ -1593,18 +1673,18 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
 
     @SuppressWarnings("DuplicatedCode")
     static final class EntrySpliterator<K, V>
-            extends HashMapSourceCodeAnalysis.HashMapSpliterator<K, V>
+            extends HashMap.HashMapSpliterator<K, V>
             implements Spliterator<Map.Entry<K, V>> {
-        EntrySpliterator(HashMapSourceCodeAnalysis<K,V> m, int origin, int fence, int est,
+        EntrySpliterator(HashMap<K,V> m, int origin, int fence, int est,
                          int expectedModCount) {
             super(m, origin, fence, est, expectedModCount);
         }
 
         @Override
-        public HashMapSourceCodeAnalysis.EntrySpliterator<K, V> trySplit() {
+        public HashMap.EntrySpliterator<K, V> trySplit() {
             int hi = getFence(), lo = index, mid = (lo + hi) >>> 1;
             return (lo >= mid || current != null) ? null :
-                    new HashMapSourceCodeAnalysis.EntrySpliterator<>(map, lo, index = mid, est >>>= 1,
+                    new HashMap.EntrySpliterator<>(map, lo, index = mid, est >>>= 1,
                             expectedModCount);
         }
 
@@ -1614,8 +1694,8 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             if (action == null) {
                 throw new NullPointerException();
             }
-            HashMapSourceCodeAnalysis<K,V> m = map;
-            HashMapSourceCodeAnalysis.Node<K, V>[] tab = m.table;
+            HashMap<K,V> m = map;
+            HashMap.Node<K, V>[] tab = m.table;
             if ((hi = fence) < 0) {
                 mc = expectedModCount = m.modCount;
                 hi = fence = (tab == null) ? 0 : tab.length;
@@ -1624,7 +1704,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             }
             if (tab != null && tab.length >= hi &&
                     (i = index) >= 0 && (i < (index = hi) || current != null)) {
-                HashMapSourceCodeAnalysis.Node<K, V> p = current;
+                HashMap.Node<K, V> p = current;
                 current = null;
                 do {
                     if (p == null) {
@@ -1646,13 +1726,13 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             if (action == null) {
                 throw new NullPointerException();
             }
-            HashMapSourceCodeAnalysis.Node<K, V>[] tab = map.table;
+            HashMap.Node<K, V>[] tab = map.table;
             if (tab != null && tab.length >= (hi = getFence()) && index >= 0) {
                 while (current != null || index < hi) {
                     if (current == null) {
                         current = tab[index++];
                     } else {
-                        HashMapSourceCodeAnalysis.Node<K, V> e = current;
+                        HashMap.Node<K, V> e = current;
                         current = current.next;
                         action.accept(e);
                         if (map.modCount == expectedModCount) {
@@ -1685,23 +1765,23 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
      */
 
     // Create a regular (non-tree) node
-    Node<K, V> newNode(int hash, K key, V value, HashMapSourceCodeAnalysis.Node<K, V> next) {
-        return new HashMapSourceCodeAnalysis.Node<>(hash, key, value, next);
+    Node<K, V> newNode(int hash, K key, V value, HashMap.Node<K, V> next) {
+        return new HashMap.Node<>(hash, key, value, next);
     }
 
     // For conversion from TreeNodes to plain nodes
-    HashMapSourceCodeAnalysis.Node<K, V> replacementNode(HashMapSourceCodeAnalysis.Node<K, V> p, HashMapSourceCodeAnalysis.Node<K, V> next) {
-        return new HashMapSourceCodeAnalysis.Node<>(p.hash, p.key, p.value, next);
+    HashMap.Node<K, V> replacementNode(HashMap.Node<K, V> p, HashMap.Node<K, V> next) {
+        return new HashMap.Node<>(p.hash, p.key, p.value, next);
     }
 
     // Create a tree bin node
-    HashMapSourceCodeAnalysis.TreeNode<K, V> newTreeNode(int hash, K key, V value, HashMapSourceCodeAnalysis.Node<K, V> next) {
-        return new HashMapSourceCodeAnalysis.TreeNode<>(hash, key, value, next);
+    HashMap.TreeNode<K, V> newTreeNode(int hash, K key, V value, HashMap.Node<K, V> next) {
+        return new HashMap.TreeNode<>(hash, key, value, next);
     }
 
     // For treeifyBin
-    HashMapSourceCodeAnalysis.TreeNode<K, V> replacementTreeNode(HashMapSourceCodeAnalysis.Node<K, V> p, HashMapSourceCodeAnalysis.Node<K, V> next) {
-        return new HashMapSourceCodeAnalysis.TreeNode<>(p.hash, p.key, p.value, next);
+    HashMap.TreeNode<K, V> replacementTreeNode(HashMap.Node<K, V> p, HashMap.Node<K, V> next) {
+        return new HashMap.TreeNode<>(p.hash, p.key, p.value, next);
     }
 
     /**
@@ -1718,21 +1798,21 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     }
 
     // Callbacks to allow LinkedHashMap post-actions
-    void afterNodeAccess(HashMapSourceCodeAnalysis.Node<K, V> p) {
+    void afterNodeAccess(HashMap.Node<K, V> p) {
     }
 
     void afterNodeInsertion(boolean evict) {
     }
 
-    void afterNodeRemoval(HashMapSourceCodeAnalysis.Node<K, V> p) {
+    void afterNodeRemoval(HashMap.Node<K, V> p) {
     }
 
     // Called only from writeObject, to ensure compatible ordering.
     void internalWriteEntries(java.io.ObjectOutputStream s) throws IOException {
-        HashMapSourceCodeAnalysis.Node<K, V>[] tab;
+        HashMap.Node<K, V>[] tab;
         if (size > 0 && (tab = table) != null) {
             for (int i = 0; i < tab.length; ++i) {
-                for (HashMapSourceCodeAnalysis.Node<K, V> e = tab[i]; e != null; e = e.next) {
+                for (HashMap.Node<K, V> e = tab[i]; e != null; e = e.next) {
                     s.writeObject(e.key);
                     s.writeObject(e.value);
                 }
@@ -1744,26 +1824,26 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
     // Tree bins
 
     /**
-     * Entry for Tree bins. Extends LinkedHashMapSourceCodeAnalysis.Entry (which in turn
+     * Entry for Tree bins. Extends LinkedHashMap.Entry (which in turn
      * extends Node) so can be used as extension of either regular or
      * linked node.
      */
-    static final class TreeNode<K, V> extends HashMapSourceCodeAnalysis.Node<K, V> {
-        HashMapSourceCodeAnalysis.TreeNode<K, V> parent;  // red-black tree links
-        HashMapSourceCodeAnalysis.TreeNode<K, V> left;
-        HashMapSourceCodeAnalysis.TreeNode<K, V> right;
-        HashMapSourceCodeAnalysis.TreeNode<K, V> prev;    // needed to unlink next upon deletion
+    static final class TreeNode<K, V> extends HashMap.Node<K, V> {
+        HashMap.TreeNode<K, V> parent;  // red-black tree links
+        HashMap.TreeNode<K, V> left;
+        HashMap.TreeNode<K, V> right;
+        HashMap.TreeNode<K, V> prev;    // needed to unlink next upon deletion
         boolean red;
 
-        TreeNode(int hash, K key, V val, HashMapSourceCodeAnalysis.Node<K, V> next) {
+        TreeNode(int hash, K key, V val, HashMap.Node<K, V> next) {
             super(hash, key, val, next);
         }
 
         /**
          * Returns root of tree containing this node.
          */
-        final HashMapSourceCodeAnalysis.TreeNode<K, V> root() {
-            for (HashMapSourceCodeAnalysis.TreeNode<K, V> r = this, p; ; ) {
+        final HashMap.TreeNode<K, V> root() {
+            for (HashMap.TreeNode<K, V> r = this, p; ; ) {
                 if ((p = r.parent) == null) {
                     return r;
                 }
@@ -1774,15 +1854,15 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         /**
          * Ensures that the given root is the first node of its bin.
          */
-        static <K, V> void moveRootToFront(HashMapSourceCodeAnalysis.Node<K, V>[] tab, HashMapSourceCodeAnalysis.TreeNode<K, V> root) {
+        static <K, V> void moveRootToFront(HashMap.Node<K, V>[] tab, HashMap.TreeNode<K, V> root) {
             int n;
             if (root != null && tab != null && (n = tab.length) > 0) {
                 int index = (n - 1) & root.hash;
-                HashMapSourceCodeAnalysis.TreeNode<K, V> first = (HashMapSourceCodeAnalysis.TreeNode<K, V>) tab[index];
+                HashMap.TreeNode<K, V> first = (HashMap.TreeNode<K, V>) tab[index];
                 if (root != first) {
-                    HashMapSourceCodeAnalysis.Node<K, V> rn;
+                    HashMap.Node<K, V> rn;
                     tab[index] = root;
-                    HashMapSourceCodeAnalysis.TreeNode<K, V> rp = root.prev;
+                    HashMap.TreeNode<K, V> rp = root.prev;
                     if ((rn = root.next) != null) {
                         ((TreeNode<K, V>) rn).prev = rp;
                     }
@@ -1804,12 +1884,12 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
          * The kc argument caches comparableClassFor(key) upon first use
          * comparing keys.
          */
-        final HashMapSourceCodeAnalysis.TreeNode<K, V> find(int h, Object k, Class<?> kc) {
-            HashMapSourceCodeAnalysis.TreeNode<K, V> p = this;
+        final HashMap.TreeNode<K, V> find(int h, Object k, Class<?> kc) {
+            HashMap.TreeNode<K, V> p = this;
             do {
                 int ph, dir;
                 K pk;
-                HashMapSourceCodeAnalysis.TreeNode<K, V> pl = p.left, pr = p.right, q;
+                HashMap.TreeNode<K, V> pl = p.left, pr = p.right, q;
                 if ((ph = p.hash) > h) {
                     p = pl;
                 } else if (ph < h) {
@@ -1836,7 +1916,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         /**
          * Calls find for root node.
          */
-        final HashMapSourceCodeAnalysis.TreeNode<K, V> getTreeNode(int h, Object k) {
+        final HashMap.TreeNode<K, V> getTreeNode(int h, Object k) {
             return ((parent != null) ? root() : this).find(h, k, null);
         }
 
@@ -1861,10 +1941,10 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         /**
          * Forms tree of the nodes linked from this node.
          */
-        final void treeify(HashMapSourceCodeAnalysis.Node<K, V>[] tab) {
-            HashMapSourceCodeAnalysis.TreeNode<K, V> root = null;
-            for (HashMapSourceCodeAnalysis.TreeNode<K, V> x = this, next; x != null; x = next) {
-                next = (HashMapSourceCodeAnalysis.TreeNode<K, V>) x.next;
+        final void treeify(HashMap.Node<K, V>[] tab) {
+            HashMap.TreeNode<K, V> root = null;
+            for (HashMap.TreeNode<K, V> x = this, next; x != null; x = next) {
+                next = (HashMap.TreeNode<K, V>) x.next;
                 x.left = x.right = null;
                 if (root == null) {
                     x.parent = null;
@@ -1874,7 +1954,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                     K k = x.key;
                     int h = x.hash;
                     Class<?> kc = null;
-                    for (HashMapSourceCodeAnalysis.TreeNode<K, V> p = root; ; ) {
+                    for (HashMap.TreeNode<K, V> p = root; ; ) {
                         int dir, ph;
                         K pk = p.key;
                         if ((ph = p.hash) > h) {
@@ -1887,7 +1967,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                             dir = tieBreakOrder(k, pk);
                         }
 
-                        HashMapSourceCodeAnalysis.TreeNode<K, V> xp = p;
+                        HashMap.TreeNode<K, V> xp = p;
                         if ((p = (dir <= 0) ? p.left : p.right) == null) {
                             x.parent = xp;
                             if (dir <= 0) {
@@ -1908,10 +1988,10 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
          * Returns a list of non-TreeNodes replacing those linked from
          * this node.
          */
-        final HashMapSourceCodeAnalysis.Node<K, V> untreeify(HashMapSourceCodeAnalysis<K,V> map) {
-            HashMapSourceCodeAnalysis.Node<K, V> hd = null, tl = null;
-            for (HashMapSourceCodeAnalysis.Node<K, V> q = this; q != null; q = q.next) {
-                HashMapSourceCodeAnalysis.Node<K, V> p = map.replacementNode(q, null);
+        final HashMap.Node<K, V> untreeify(HashMap<K,V> map) {
+            HashMap.Node<K, V> hd = null, tl = null;
+            for (HashMap.Node<K, V> q = this; q != null; q = q.next) {
+                HashMap.Node<K, V> p = map.replacementNode(q, null);
                 if (tl == null) {
                     hd = p;
                 } else {
@@ -1925,13 +2005,13 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         /**
          * Tree version of putVal.
          */
-        final HashMapSourceCodeAnalysis.TreeNode<K, V> putTreeVal(HashMapSourceCodeAnalysis<K, V> map,
-                                                                  HashMapSourceCodeAnalysis.Node<K, V>[] tab,
+        final HashMap.TreeNode<K, V> putTreeVal(HashMap<K, V> map,
+                                                                  HashMap.Node<K, V>[] tab,
                                                                   int h, K k, V v) {
             Class<?> kc = null;
             boolean searched = false;
-            HashMapSourceCodeAnalysis.TreeNode<K, V> root = (parent != null) ? root() : this;
-            for (HashMapSourceCodeAnalysis.TreeNode<K, V> p = root; ; ) {
+            HashMap.TreeNode<K, V> root = (parent != null) ? root() : this;
+            for (HashMap.TreeNode<K, V> p = root; ; ) {
                 int dir, ph;
                 K pk;
                 if ((ph = p.hash) > h) {
@@ -1944,7 +2024,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                         (kc = comparableClassFor(k)) == null) ||
                         (dir = compareComparables(kc, k, pk)) == 0) {
                     if (!searched) {
-                        HashMapSourceCodeAnalysis.TreeNode<K, V> q, ch;
+                        HashMap.TreeNode<K, V> q, ch;
                         searched = true;
                         if (((ch = p.left) != null &&
                                 (q = ch.find(h, k, kc)) != null) ||
@@ -1956,10 +2036,10 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                     dir = tieBreakOrder(k, pk);
                 }
 
-                HashMapSourceCodeAnalysis.TreeNode<K, V> xp = p;
+                HashMap.TreeNode<K, V> xp = p;
                 if ((p = (dir <= 0) ? p.left : p.right) == null) {
-                    HashMapSourceCodeAnalysis.Node<K, V> xpn = xp.next;
-                    HashMapSourceCodeAnalysis.TreeNode<K, V> x = map.newTreeNode(h, k, v, xpn);
+                    HashMap.Node<K, V> xpn = xp.next;
+                    HashMap.TreeNode<K, V> x = map.newTreeNode(h, k, v, xpn);
                     if (dir <= 0) {
                         xp.left = x;
                     } else {
@@ -1986,15 +2066,15 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
          * the bin is converted back to a plain bin. (The test triggers
          * somewhere between 2 and 6 nodes, depending on tree structure).
          */
-        final void removeTreeNode(HashMapSourceCodeAnalysis<K, V> map, HashMapSourceCodeAnalysis.Node<K, V>[] tab,
+        final void removeTreeNode(HashMap<K, V> map, HashMap.Node<K, V>[] tab,
                                   boolean movable) {
             int n;
             if (tab == null || (n = tab.length) == 0) {
                 return;
             }
             int index = (n - 1) & hash;
-            HashMapSourceCodeAnalysis.TreeNode<K, V> first = (HashMapSourceCodeAnalysis.TreeNode<K, V>) tab[index], root = first, rl;
-            HashMapSourceCodeAnalysis.TreeNode<K, V> succ = (HashMapSourceCodeAnalysis.TreeNode<K, V>) next, pred = prev;
+            HashMap.TreeNode<K, V> first = (HashMap.TreeNode<K, V>) tab[index], root = first, rl;
+            HashMap.TreeNode<K, V> succ = (HashMap.TreeNode<K, V>) next, pred = prev;
             if (pred == null) {
                 tab[index] = first = succ;
             } else {
@@ -2018,9 +2098,9 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                 tab[index] = first.untreeify(map);  // too small
                 return;
             }
-            HashMapSourceCodeAnalysis.TreeNode<K, V> p = this, pl = left, pr = right, replacement;
+            HashMap.TreeNode<K, V> p = this, pl = left, pr = right, replacement;
             if (pl != null && pr != null) {
-                HashMapSourceCodeAnalysis.TreeNode<K, V> s = pr, sl;
+                HashMap.TreeNode<K, V> s = pr, sl;
                 while ((sl = s.left) != null) // find successor
                 {
                     s = sl;
@@ -2028,13 +2108,13 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                 boolean c = s.red;
                 s.red = p.red;
                 p.red = c; // swap colors
-                HashMapSourceCodeAnalysis.TreeNode<K, V> sr = s.right;
-                HashMapSourceCodeAnalysis.TreeNode<K, V> pp = p.parent;
+                HashMap.TreeNode<K, V> sr = s.right;
+                HashMap.TreeNode<K, V> pp = p.parent;
                 if (s == pr) { // p was s's direct parent
                     p.parent = s;
                     s.right = p;
                 } else {
-                    HashMapSourceCodeAnalysis.TreeNode<K, V> sp = s.parent;
+                    HashMap.TreeNode<K, V> sp = s.parent;
                     if ((p.parent = sp) != null) {
                         if (s == sp.left) {
                             sp.left = p;
@@ -2073,7 +2153,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                 replacement = p;
             }
             if (replacement != p) {
-                HashMapSourceCodeAnalysis.TreeNode<K, V> pp = replacement.parent = p.parent;
+                HashMap.TreeNode<K, V> pp = replacement.parent = p.parent;
                 if (pp == null) {
                     root = replacement;
                 } else if (p == pp.left) {
@@ -2084,10 +2164,10 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                 p.left = p.right = p.parent = null;
             }
 
-            HashMapSourceCodeAnalysis.TreeNode<K, V> r = p.red ? root : balanceDeletion(root, replacement);
+            HashMap.TreeNode<K, V> r = p.red ? root : balanceDeletion(root, replacement);
 
             if (replacement == p) {  // detach
-                HashMapSourceCodeAnalysis.TreeNode<K, V> pp = p.parent;
+                HashMap.TreeNode<K, V> pp = p.parent;
                 p.parent = null;
                 if (pp != null) {
                     if (p == pp.left) {
@@ -2112,14 +2192,14 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
          * @param index the index of the table being split
          * @param bit   the bit of hash to split on
          */
-        final void split(HashMapSourceCodeAnalysis<K, V> map, HashMapSourceCodeAnalysis.Node<K, V>[] tab, int index, int bit) {
-            HashMapSourceCodeAnalysis.TreeNode<K, V> b = this;
+        final void split(HashMap<K, V> map, HashMap.Node<K, V>[] tab, int index, int bit) {
+            HashMap.TreeNode<K, V> b = this;
             // Relink into lo and hi lists, preserving order
-            HashMapSourceCodeAnalysis.TreeNode<K, V> loHead = null, loTail = null;
-            HashMapSourceCodeAnalysis.TreeNode<K, V> hiHead = null, hiTail = null;
+            HashMap.TreeNode<K, V> loHead = null, loTail = null;
+            HashMap.TreeNode<K, V> hiHead = null, hiTail = null;
             int lc = 0, hc = 0;
-            for (HashMapSourceCodeAnalysis.TreeNode<K, V> e = b, next; e != null; e = next) {
-                next = (HashMapSourceCodeAnalysis.TreeNode<K, V>) e.next;
+            for (HashMap.TreeNode<K, V> e = b, next; e != null; e = next) {
+                next = (HashMap.TreeNode<K, V>) e.next;
                 e.next = null;
                 if ((e.hash & bit) == 0) {
                     if ((e.prev = loTail) == null) {
@@ -2166,9 +2246,9 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         /* ------------------------------------------------------------ */
         // Red-black tree methods, all adapted from CLR
 
-        static <K, V> HashMapSourceCodeAnalysis.TreeNode<K, V> rotateLeft(HashMapSourceCodeAnalysis.TreeNode<K, V> root,
-                                                        HashMapSourceCodeAnalysis.TreeNode<K, V> p) {
-            HashMapSourceCodeAnalysis.TreeNode<K, V> r, pp, rl;
+        static <K, V> HashMap.TreeNode<K, V> rotateLeft(HashMap.TreeNode<K, V> root,
+                                                        HashMap.TreeNode<K, V> p) {
+            HashMap.TreeNode<K, V> r, pp, rl;
             if (p != null && (r = p.right) != null) {
                 if ((rl = p.right = r.left) != null) {
                     rl.parent = p;
@@ -2186,9 +2266,9 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             return root;
         }
 
-        static <K, V> HashMapSourceCodeAnalysis.TreeNode<K, V> rotateRight(HashMapSourceCodeAnalysis.TreeNode<K, V> root,
-                                                         HashMapSourceCodeAnalysis.TreeNode<K, V> p) {
-            HashMapSourceCodeAnalysis.TreeNode<K, V> l, pp, lr;
+        static <K, V> HashMap.TreeNode<K, V> rotateRight(HashMap.TreeNode<K, V> root,
+                                                         HashMap.TreeNode<K, V> p) {
+            HashMap.TreeNode<K, V> l, pp, lr;
             if (p != null && (l = p.left) != null) {
                 if ((lr = p.left = l.right) != null) {
                     lr.parent = p;
@@ -2206,10 +2286,10 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             return root;
         }
 
-        static <K, V> HashMapSourceCodeAnalysis.TreeNode<K, V> balanceInsertion(HashMapSourceCodeAnalysis.TreeNode<K, V> root,
-                                                              HashMapSourceCodeAnalysis.TreeNode<K, V> x) {
+        static <K, V> HashMap.TreeNode<K, V> balanceInsertion(HashMap.TreeNode<K, V> root,
+                                                              HashMap.TreeNode<K, V> x) {
             x.red = true;
-            for (HashMapSourceCodeAnalysis.TreeNode<K, V> xp, xpp, xppl, xppr; ; ) {
+            for (HashMap.TreeNode<K, V> xp, xpp, xppl, xppr; ; ) {
                 if ((xp = x.parent) == null) {
                     x.red = false;
                     return x;
@@ -2258,9 +2338,9 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
             }
         }
 
-        static <K, V> HashMapSourceCodeAnalysis.TreeNode<K, V> balanceDeletion(HashMapSourceCodeAnalysis.TreeNode<K, V> root,
-                                                             HashMapSourceCodeAnalysis.TreeNode<K, V> x) {
-            for (HashMapSourceCodeAnalysis.TreeNode<K, V> xp, xpl, xpr; ; ) {
+        static <K, V> HashMap.TreeNode<K, V> balanceDeletion(HashMap.TreeNode<K, V> root,
+                                                             HashMap.TreeNode<K, V> x) {
+            for (HashMap.TreeNode<K, V> xp, xpl, xpr; ; ) {
                 if (x == null || x == root) {
                     return root;
                 } else if ((xp = x.parent) == null) {
@@ -2279,7 +2359,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                     if (xpr == null) {
                         x = xp;
                     } else {
-                        HashMapSourceCodeAnalysis.TreeNode<K, V> sl = xpr.left, sr = xpr.right;
+                        HashMap.TreeNode<K, V> sl = xpr.left, sr = xpr.right;
                         if ((sr == null || !sr.red) &&
                                 (sl == null || !sl.red)) {
                             xpr.red = true;
@@ -2317,7 +2397,7 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
                     if (xpl == null) {
                         x = xp;
                     } else {
-                        HashMapSourceCodeAnalysis.TreeNode<K, V> sl = xpl.left, sr = xpl.right;
+                        HashMap.TreeNode<K, V> sl = xpl.left, sr = xpl.right;
                         if ((sl == null || !sl.red) &&
                                 (sr == null || !sr.red)) {
                             xpl.red = true;
@@ -2352,9 +2432,9 @@ public class HashMapSourceCodeAnalysis<K, V> extends AbstractMap<K, V>
         /**
          * Recursive invariant check
          */
-        static <K, V> boolean checkInvariants(HashMapSourceCodeAnalysis.TreeNode<K, V> t) {
-            HashMapSourceCodeAnalysis.TreeNode<K, V> tp = t.parent, tl = t.left, tr = t.right,
-                    tb = t.prev, tn = (HashMapSourceCodeAnalysis.TreeNode<K, V>) t.next;
+        static <K, V> boolean checkInvariants(HashMap.TreeNode<K, V> t) {
+            HashMap.TreeNode<K, V> tp = t.parent, tl = t.left, tr = t.right,
+                    tb = t.prev, tn = (HashMap.TreeNode<K, V>) t.next;
             if (tb != null && tb.next != t) {
                 return false;
             }

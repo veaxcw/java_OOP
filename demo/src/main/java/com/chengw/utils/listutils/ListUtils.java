@@ -33,28 +33,21 @@ public class ListUtils {
 
     /**
      * List 深拷贝
+     *
      * @param src 源list
      * @param <T> 泛型对象
      * @return 拷贝后的List
      */
     public static <T> List<T> deepCopy(List<T> src) throws IOException, ClassNotFoundException {
 
-        ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-        ObjectOutputStream out = new ObjectOutputStream(byteOut);
-        out.writeObject(src);
-
-        ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
-        ObjectInputStream in = new ObjectInputStream(byteIn);
-        @SuppressWarnings("unchecked")
-        List<T> dest = (List<T>) in.readObject();
-
-        // todo  一点都不优雅
-        out.close();
-        byteOut.close();
-        in.close();
-        byteIn.close();
-
-        return dest;
+        try (ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+             ObjectOutputStream out = new ObjectOutputStream(byteOut)) {
+            out.writeObject(src);
+            try (ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
+                 ObjectInputStream in = new ObjectInputStream(byteIn)) {
+                return  (List<T>) in.readObject();
+            }
+        }
     }
 
 }

@@ -4,6 +4,7 @@ import com.chengw.datastructure.binaryTree.BinarySearchTree;
 import com.chengw.datastructure.quene.Queue;
 
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class DataStructureTest {
@@ -22,6 +23,7 @@ public class DataStructureTest {
     }
 
     public static void main(String[] args) {
+
         Queue<Integer> queue = new Queue<>();
         for(int i = 0 ;i < 6;i++){
             queue.add(i);
