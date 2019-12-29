@@ -51,13 +51,11 @@ public class HashMap<K, V> extends AbstractMap<K, V>
     /**
      * 当 树中元素的个数小于6时转化成链表
      */
-    static final int UNTREEIFY_THRESHOLD = 6;
+    static final int UNTREcEIFY_THRESHOLD = 6;
 
     /**
-     * The smallest table capacity for which bins may be treeified.
-     * (Otherwise the table is resized if too many nodes in a bin.)
-     * Should be at least 4 * TREEIFY_THRESHOLD to avoid conflicts
-     * between resizing and treeification thresholds.
+     * *
+     * 转红黑树 时 最小容量
      */
     static final int MIN_TREEIFY_CAPACITY = 64;
 
