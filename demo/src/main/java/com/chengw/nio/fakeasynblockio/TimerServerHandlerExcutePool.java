@@ -1,10 +1,8 @@
 package com.chengw.nio.fakeasynblockio;
 
-import java.net.Socket;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import java.util.concurrent.*;
 
 /**
  * socket 服务端处理器线程池
@@ -16,9 +14,11 @@ public class TimerServerHandlerExcutePool {
 
     public TimerServerHandlerExcutePool(int maxPoolSice,int queueSize) {
 
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("demo-pool-%d").build();
+
         executorService = new  ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(),maxPoolSice,
                 120L, TimeUnit.SECONDS,
-                new ArrayBlockingQueue<java.lang.Runnable>(queueSize));
+                new ArrayBlockingQueue<java.lang.Runnable>(queueSize),namedThreadFactory);
     }
 
     public void execute(Runnable task){

@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 /**
  * @author chengw
  */
-public class bufferDemoTest {
+public class BufferDemoTest {
 
     public void copy() throws FileNotFoundException {
         FileInputStream fis = new FileInputStream("F:/VolatileViableDemo.class");

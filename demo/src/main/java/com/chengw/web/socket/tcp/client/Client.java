@@ -21,7 +21,7 @@ public class Client {
             PrintWriter pw = null;
             try {
                 //客户端请求与本机的8888端口建立链接
-                client = new Socket("localhost", 8888);
+                client = new Socket("localhost", 8005);
                 //获取socket输出流，
                 pw = new PrintWriter(client.getOutputStream());
                 pw.write("hi countDownLatch!");

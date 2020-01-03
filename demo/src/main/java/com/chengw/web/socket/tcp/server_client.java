@@ -10,8 +10,8 @@ public class server_client {
         new Thread(new ClientThread()).start();
 
         //启动服务端
-        Server server = new Server();
-        server.launch();
+        //Server server = new Server();
+        //server.launch();
 
     }
 }
