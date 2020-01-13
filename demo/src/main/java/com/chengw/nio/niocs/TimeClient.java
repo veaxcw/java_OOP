@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class TimeClient {
 
-    private static final int  port = 9999;
+    private static final int  port = 8080;
 
     private static final String HOST = "localhost";
 

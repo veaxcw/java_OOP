@@ -66,12 +66,13 @@ public class TimerClientHandle implements Runnable {
 
         byte[] bytes = "QUERY TIME ORDER".getBytes();
         ByteBuffer buffer = ByteBuffer.allocate(1024);
+        System.out.println("bytes[]" + bytes);
         buffer.put(bytes);
         buffer.flip();
         try {
             sc.write(buffer);
             if(!buffer.hasRemaining()){
-                System.out.println("send order 2 server succeed");
+                System.out.println(" send order 2 server succeed");
             }
         } catch (IOException e) {
             e.printStackTrace();
