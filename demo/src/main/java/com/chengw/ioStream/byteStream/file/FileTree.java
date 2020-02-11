@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.nio.file.Files;
 
 public class FileTree {
 
@@ -29,7 +28,7 @@ public class FileTree {
 
 	}
 	/**递归实现遍历根目录下所有文件和文件夹**/
-	public int getFileTree(File root){
+	public void getFileTree(File root){
 
 
 		String[] list = root.list();
@@ -62,8 +61,7 @@ public class FileTree {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		return 0;
-		}
+	}
 }
 
 

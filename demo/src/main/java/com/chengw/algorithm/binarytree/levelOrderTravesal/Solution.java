@@ -1,6 +1,6 @@
-package com.chengw.algorithm.binaryTree.levelOrderTravesal;
+package com.chengw.algorithm.binarytree.levelOrderTravesal;
 
-import com.chengw.algorithm.binaryTree.common.TreeNode;
+import com.chengw.algorithm.binarytree.common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

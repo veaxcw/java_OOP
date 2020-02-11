@@ -1,6 +1,6 @@
-package com.chengw.algorithm.binaryTree.inOrderTraversal;
+package com.chengw.algorithm.binarytree.inOrderTraversal;
 
-import com.chengw.algorithm.binaryTree.common.TreeNode;
+import com.chengw.algorithm.binarytree.common.TreeNode;
 import com.chengw.datastructure.stack.Stack;
 
 import java.util.ArrayList;

@@ -14,10 +14,11 @@ public class ThreadPool {
 
 
     public static ThreadPoolExecutor getThreadPool() {
+
         /**
          * 线程池大小
          */
-        int corePoolSize = 10;
+        int corePoolSize = Runtime.getRuntime().availableProcessors();
         /**
          * 线程池最大大小
          */

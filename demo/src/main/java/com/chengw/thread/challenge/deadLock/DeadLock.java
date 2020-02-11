@@ -1,9 +1,12 @@
 package com.chengw.thread.challenge.deadLock;
 
+import java.util.concurrent.locks.Lock;
+
 public class DeadLock {
 
     public static String str1 = "str1";
     public static String str2 = "str2";
+
 
     public static void main(String[] args) {
         Thread a = new Thread(()->{

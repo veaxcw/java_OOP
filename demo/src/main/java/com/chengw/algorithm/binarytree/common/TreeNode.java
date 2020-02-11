@@ -1,4 +1,4 @@
-package com.chengw.algorithm.binaryTree.common;
+package com.chengw.algorithm.binarytree.common;
 
 public class TreeNode implements Comparable<TreeNode> {
     public int val;

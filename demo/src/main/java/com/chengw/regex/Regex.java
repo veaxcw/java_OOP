@@ -1,4 +1,4 @@
-package com.chengw.ioStream.regex;
+package com.chengw.regex;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

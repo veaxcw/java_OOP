@@ -20,14 +20,14 @@ public class Array {
 		//System.arraycopy(c, 0, a, 0, a.length);
 		//System.arraycopy(n, 0, m, m.length/2, n.length);
 		//System.out.println("a = "+toString(a));
-		System.out.println("m = "+Arrays.asList(m));//
+		System.out.println("m = "+Arrays.asList(m));
 		System.out.println("n = "+Arrays.asList(n));
 		System.out.println(Arrays.equals(a,b));
 		System.out.println(Arrays.equals(m,n));
 	} 
 
 	private static String toString(int[] a) {
-		StringBuffer buf = new StringBuffer("[");//
+		StringBuffer buf = new StringBuffer("[");
 		int i;
 		for(i = 0;i < a.length;i++) {
 			buf.append(a[i]);
