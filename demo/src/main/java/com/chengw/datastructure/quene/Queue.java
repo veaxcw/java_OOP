@@ -14,10 +14,6 @@ public class Queue<T extends Comparable<? super T>> implements Serializable {
 
     private static final int  MIN_CAPACITY = 10;
 
-    private static final int MAX_CAPACITY = Integer.MAX_VALUE - 8;
-
-    private static  final int INCREMENT = 0;
-
     private Object[] dataElement;
 
     private int front = 0;
@@ -25,7 +21,6 @@ public class Queue<T extends Comparable<? super T>> implements Serializable {
     private int rear = 0;
 
     private int queueSize = 0;
-
 
 
 

@@ -22,13 +22,13 @@ public class JdbcConnectionUtils {
     }
 
     private final static String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final static String URL = "jdbc:mysql://47.93.19.130:3306/cw_tiafs?" +
+    private final static String URL = "jdbc:mysql://59.110.230.138:3306/his?" +
             "useUnicode=true&" +
             "characterEncoding=UTF-8&" +
             "allowMultiQueries=true&" +
             "serverTimezone=GMT%2B8";
-    private final static String USERNAME = "root";
-    private final static String PASSWORD = "root";
+    private final static String USERNAME = "veax";
+    private final static String PASSWORD = "veadbpass";
 
     public static Connection getConnection() {
         Connection conn = null;
@@ -46,6 +46,11 @@ public class JdbcConnectionUtils {
 
         return conn;
     }
+
+    public static void main(String[] args) {
+        getConnection();
+    }
+
 
     /**
      * 批量插入1万条用户测试数据
