@@ -13,10 +13,12 @@ import java.math.BigInteger;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.xml.sax.InputSource;
 import sun.misc.Unsafe;
 
 /**
@@ -172,4 +174,28 @@ public class Tools {
             IllegalAccessException, ClassNotFoundException {
         return Class.forName(className).newInstance();
     }
+
+    public static String showObjectHead(Object target) throws NoSuchFieldException, IllegalAccessException {
+        Class<Unsafe> unsafeClass = Unsafe.class;
+
+        Field theUnsafe = unsafeClass.getDeclaredField("theUnsafe");
+        theUnsafe.setAccessible(true);
+        Unsafe unsafe = (Unsafe)theUnsafe.get(null);
+
+        StringBuilder resultBuilder = new StringBuilder();
+
+        for (int i = 7; i >=0 ;i--) {
+            byte b = unsafe.getByte(target, 1);
+            resultBuilder.append(String.format("%8s", Integer.toBinaryString(b & 0xFF))
+                    .replace(" ", ""))
+            .append("\t");
+
+            if (i == 4 || i ==0) {
+                resultBuilder.append(" ");
+            }
+        }
+        return resultBuilder.toString();
+    }
+
+
 }

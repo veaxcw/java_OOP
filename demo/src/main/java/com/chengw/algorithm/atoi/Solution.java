@@ -30,9 +30,6 @@ public class Solution {
         //true 为正
         boolean flag = true;
 
-
-
-
         String temp = str.trim();
         //利用asc码来完成转换
         Queue<Integer> queue = new ArrayDeque<>();
